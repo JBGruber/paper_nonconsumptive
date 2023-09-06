@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+_extensions
+non-consumptive.pdf
+aup_logo.pdf
+*.cls
+*.tex
+deleted.txt
+

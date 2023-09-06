@@ -1,0 +1,422 @@
+---
+title: "Sharing *is* Caring (about Research): Four Avenues for Sharing Text Collections and the Need for Non-Consumptive Research"
+author:
+  - name: "Johannes B. Gruber"
+    affiliations:
+      - "Vrije Universiteit Amsterdam"
+      - name: "University of Amsterdam"
+  - name: "Wouter van Atteveldt"
+    affiliations:
+      - "Vrije Universiteit Amsterdam"
+  - name: "Kasper Welbers"
+    affiliations:
+      - "Vrije Universiteit Amsterdam"
+format:
+  ccr-pdf:
+    keep-tex: true
+    citeproc: false
+    filters: [_extensions/citeproc.lua, _extensions/wordcount.lua]
+pdf-engine: pdflatex
+keywords: Non-Consumptive Research, computational methods
+volume: 1
+pubnumber: 1
+pubyear: 2019
+firstpage: 1
+shortauthors: One & Two
+shorttitle: "Sharing *is* Caring (about Research)"
+bibliography: bibliography.bib
+execute:
+  eval: false
+abstract: |
+  This paper urges you to share your data and presents the The Amsterdam Content Analysis Toolkit, which can be used to share your copora as widely as possible while respecting legal and ethical limitations.
+---
+
+Text-as-data has arrived as a prominent method for content analysis in the social sciences.
+The twin promises of making large scale analysis of text corpora feasible while keeping the costs for manual annotation to a minimum convinced institutions and individual researchers to make considerable investments into methods training and embrace the computational revolution of communication science in the last decade \[@grimmerTADA2013; (e.g., see overview articles of Brady, 2019; Hilbert et al., 2019; Lazer & Radford, 2017; van Atteveldt & Peng, 2018; Van Atteveldt et al., 2019)\].
+However, since the early days, a lot of the hopes and enthusiasm has evaporated as access to the data gold mines of social media databases and digital news archives are progressively limited by their owners.
+And more importantly, pressing questions about political communication stay untackled, as researchers are shut out.
+
+Just this year, Twitter, which was renamed to $\mathbb{X}$ recently, eliminated the free academic access to their API^[
+<https://web.archive.org/web/20230831000123/https://www.theverge.com/2023/3/30/23662832/twitter-api-tiers-free-bot-novelty-accounts-basic-enterprice-monthly-price>
+] and Reddit has shut down access to its API^[
+<https://web.archive.org/web/20230829045754/https://www.reddit.com/r/modnews/comments/134tjpe/reddit_data_api_update_changes_to_pushshift_access/>
+] for Pushshift, a service on which most academic research of that social media site relied.
+Meanwhile Meta's tool to gather data from Facebook and Instagram, Crowdtangle, has been publicly rumored to be closing down for several years^[
+<https://www.bloomberg.com/news/articles/2022-06-23/meta-pulls-support-for-tool-used-to-keep-misinformation-in-check>;
+<https://web.archive.org/web/20230816171112/https://www.theverge.com/2022/6/23/23180357/meta-crowdtangle-shut-down-facebook-misinformation-viral-news-tracker>;
+<https://web.archive.org/web/20230827165945/https://www.abc.net.au/news/science/2022-08-16/facebook-crowdtangle-meta-disinformation-transparency/101325544>
+], making it difficult to plan, or request funding for, any projects relying on this data.
+Likewise, digital news archives, like LexisNexis, increasingly guard their sites against large scale data collection or make it out of reach expensive.
+Meanwhile, newly developed or strengthened privacy and ethical standards and laws -- while both important and welcome -- further limit access to data for analysis.
+The Post-API Age, which Freelon predicted in 2018, seems to have reached a new stage and the promised gold mines of digital communication traces are no longer accessible.
+
+In sum, this limited data availability also broadens the gap between academics once more.
+While computational methods have decreased the funding needs for analysis, limited availability of data leads to new divides in the field between those who can afford to negotiate access, or have industry ties that enable them to collaborate with social media companies, and those who cannot.
+Likewise, web scraping content, as @freelonPostAPI2018 suggests, requires know-how and resources not available to all researchers.
+Especially as more platforms, outlets and individuals try to block their content from being scraped by AI companies -- and de facto everyone else.^[
+<https://www.nytimes.com/2023/07/15/technology/artificial-intelligence-models-chat-data.html>]
+These problems have been recognised in the field and are discussed as important challenges at methodological and issue specific conferences^[
+Like the keynote roundtable at Comptext 2023 or the *The Post-API Conference* Annenberg Public Policy Center in 2023.
+] as well as in specialised working groups like the EDMO Working Group on Access to Platform Data^[
+<https://web.archive.org/web/20230606203119/https://edmo.eu/2021/08/30/launch-of-the-edmo-working-group-on-access-to-platform-data/>
+].
+
+In this contribution, we thus want to highlight an important mitigation strategy that grows in importance given the narrowing ways to gather communication data:
+sharing already gathered corpora for secondary analysis.
+For data collected through, e.g., surveys, this strategy has been established for decades.
+For text corpora, there are often legal or ethical barriers to what can be shared.
+We thus present four avenues to share datasets, structured by what is legally and morally justifiable in light of the interests of data owners.
+We put a particular focus on the possibility of making data available for *non-consumptive research*, in cases where other strategies appear impossible.
+Additionally, we offer an open source software toolkit with which almost anyone can share at least a portion of their collected data online, while respecting legal and ethical limitations to what can and cannot be shared.
+
+# Four Avenues for Sharing Text Collections
+## Make the entire dataset available
+
+The first avenue is obvious:
+make datasets available for secondary research where possible.
+This can enable others to quickly build on work after the original dataset has been gathered.
+It saves researchers from duplicating work and enables them to focus their energy on answering important questions for society that might otherwise stay uncovered.
+What might be less obvious is why those who gathered the data in the first place might want to do that.
+We believe that there are at least three convincing arguments why one should consider the step:
+
+1.  **Lend your research credibility by making it reproducible:** One of the cornerstones of robust scientific research is reproducibility, that is that others than the original researcher can take the original data and methods to  reproduce the findings of a study [@barba2018terminologies]. When the original data is not available, reproducibility is impossible by default. By making datasets available, original researchers expose themselves to more rigor, which lends transparency and credibility to the original research, but also strengthens the foundation of scientific inquiry as a whole.
+
+2. **Gather citations (beyond the own field):** Datasets that are available and are used for secondary analysis are usually also cited in new studies. Given the importance for citation counts in most academice systems worldwide, this is a big incentive for those who spent the resources to gather the original data. What researchers should also keep in mind here is that the impact of the dataset might well end up surpassing that of the original research, given that data collections might attract researchers from other disciplines than their own. As computer and data scientists become more interested in social science questions, gathered and annotated data has become a valuable resource in these fields, for example.
+
+3. **Promote the original research:** Sharing data also acts as a promotional tool. When other researchers access and use this data, they will almost always become aware of the original research and build on it. It then oftne makes sense for them not to build upon the original findings and further promote the findings through their own contribution.
+
+On the downside, making a dataset publicly available, however, will also often mean that researchers need to check with data owners if sharing datasets is allowed.
+Gathering data that is publicly available for academic research is usually considered except from copyright claims by fair use factors.
+However, sharing a collected corpus usually constitutes a pure duplication of copyright-protected, which is not covered by fair use [@HennesyLaw2019].
+If data has been bought or has been obtained through an agreement with the data owner(s), they might also be opposed to redistribution or demand additional reimbursement, making it necessary to request additional funding.
+However, making data openly accessible promotes scientific collaboration, enables the reproducibility of results, and fosters the advancement of knowledge.
+When researchers can access and build upon one another's data, it accelerates scientific progress and helps to avoid duplicative efforts.
+Useful text collections will also be referenced repeatedly, providing additional recognition for those who collected the data.
+All of this hopefully convinces research teams and funders that the additional efforts are well worth it.
+
+## Making pre-processed versions of texts available 
+
+Many researchers might be aware of the advantages that data sharing have for the research community and themselves, but refrain from it anyway, given obstacles and dangers involved with sharing them.
+However, the legal and ethical limitations to free access to information where they infringe on copyrights or on the privacy of data owners might not in all cases extend to their pre-processed versions.
+Pre-processing of textual data can be roughly divided into *destructive* and *non-destructive* steps.
+In the best case scenario, data owners would give permission to make a tokenized version of their text -- that is, a text split into its words and punctuation characters in their original order -- available.
+Other researchers can then rebuild the data for all the same analyses that can be performed on the original set.
+The caveat of such non-destructive pre-processing, however, is that the same restrictions that apply on the original data likely also apply to the pre-processed data.
+
+Where such restrictions are a concern, *destructive* pre-processing steps could instead be performed before sharing textual data.
+This could involve turning text into a document-feature-matrix -- that is a table which contains counts of how often each word, punctuation character or symbol occurs in a text.
+In these cases bag-of-word approaches can still be employed to analyze the data, but the original texts can usually not be recreated^[
+If original texts are very short, it might still be possible to some degree.
+].
+For most limitations regarding copyright laws, making data available in such a format constitutes fair use "the effect of the use upon the potential market for or value of the copyrighted work" [@HennesyLaw2019] is essentially non-existent.
+Essentially, someone who wanted to read an article or book would gain little from staring at a document-feature-matrix, leaving the data owner's chances to make money from selling the work untouched.
+In fact, the platform [Media Cloud](www.mediacloud.org) has practiced this avenue for a while to share web-scraped content from hundreds of online news sites without known issues.
+In cases where it is crucial to protect someone's privacy this might not be enough, however.
+Additional steps could be applied to create a privatized version of the data, for example, by replacing each feature description of a document-feature-matrix with a synonym.
+This decreases the usefulness of the data somewhat, but it can still be used to reproduce findings or improve upon original models.
+
+A second destructive pre-processing step that has gained popularity in recent years is to encode texts into embeddings.
+Word or text embeddings produced through models like BERT [@devlinBERT2019] are a common transformation process in computational text analysis now and are usually employed before a classification model is trained [e.g., @theocharis:2020:DPI; @rodriguezEmbedding2023; @laurerBERT-NLI2023; @SimonTelegramsphere2022].
+This means that sharing the encoded data, along with the original training and test data, would allow other researchers to improve upon the original model and use it in similar contexts.
+In these cases as well, the original texts can not be recovered, evading most concerns for data owners.
+It also makes interpreting results harder and removes the possibility to add genuinely new annotations.
+Nevertheless, many analysis methods remain possible, meaning that the presence of these datasets might still turn out to be invaluable for the research community.
+
+## Make Metadata Available for Reconstruction of the Data
+
+Whether sharing pre-processed versions of texts is possible or not, making metadata available is another important avenue to sharing corpora, either in addition or as an alternative.
+The most important use of this metadata is that it can often be used to reconstruct the original data with far fewer resources or make the possibility available where the original data could otherwise not be gathered.
+Referencing URLs, status IDs or, where not available, the dates of publication, headlines and authors of text, can enable others to collect the same data once more.
+This might not seem important at first, but consider how time-consuming and difficult it often is to identify the relevant portion of a population text.
+At the minimum, a database must be queried using carefully selected keywords, before validating the obtained corpus to make sure false positives are eliminated [@King.2017].
+Skipping this step in secondary analysis of data means that it can proceed more quickly, freeing up resources to focus on important substantive research questions.
+
+In other cases, obtaining a selection of relevant texts might be impossible.
+As many platforms and outlets do not offer a way to query the content or demand additional compensation, using keywords to select relevant portions of a database might be impossible.
+However, gathering all content to filter afterwards is often infeasible as well as it might conflict with rate limits and/or require enormous resources for download and storage.
+In sum, this can make a curated list of items the most valuable part of a shared dataset.
+
+So while obtaining the full text still involves some extra efforts and challenges, if metadata of the original data is available, this enables researchers to reproduce (often in a limited fashion as not all items might still be available) and extend the original analysis.
+In the case of Twitter data collections, the practice of sharing status IDs had become common and helped researchers to get around API limits as they were able to 'rehydrate' databases easily.^[
+http://dfreelon.org/2012/02/11/arab-spring-twitter-data-now-available-sort-of/
+] A practice that has unfortunately also become punishingly expensive under the new API rules.
+A more encouraging example is again the platform [Media Cloud](www.mediacloud.org) from which researchers can obtain curated lists of URLs to news stories about specific topics.
+Using tools such as news-please^[
+https://github.com/fhamborg/news-please
+] or paperboy^[
+https://github.com/JBGruber/paperboy
+], one can then quickly extract the full text, if the websites are still available.
+
+## Make Non-consumptive Research Capabilities Available
+
+A final avenue for making datasets available for secondary analysis is that of *non-consumptive research*.
+Non-consumptive research means that a researcher analyzes texts without consuming, that is reading, them.
+The term was popularized by two court cases which also exemplify its meaning:
+that of Authors Guild v. HathiTrust, 755 F.3d 87 (2d Cir. 2014) and Authors Guild v. Google 721 F.3d 132 (2nd Cir. 2015).
+In essence, both cases were about sharing tools to search copyrighted texts en masse to make counts, trends in usage and page numbers available for users.
+In the case of *Google Books* the service's function to display text snippets surrounding a keyword hit was also reviewed by the court and found to be covered by fair use exceptions to copyright:
+
+> "*The creation of a full-text searchable database is a quintessentially transformative use \[...\] \[T\]he result of a word search is different in purpose, character, expression, meaning, and message from the page (and the book) from which it is drawn.*" [quoted from @HennesyLaw2019, p. 294].
+
+Transformative use here refers to the first factor that determines fair use:
+if a work that uses copyrighted material adds something new, "with a further purpose or different character, and do not substitute for the original use of the work" (17 U.S.C.
+§ 107).
+
+While *non-consumptive research* was made popular through these mostly legal arguments to receive exceptions from copyright claims, the principles of *non-consumptive research* apply for most other texts that have limitations to free access, for example where they infringe on the privacy of data owners.
+If the original text is not available to third parties, harm to those whose data is being analyzed is unlikely.
+And to go even a step further: if the original content is not consumed by the primary researchers, potential harm to participants and the researchers is minimized.
+
+The model of *non-consumptive research* can thus be employed and extended for most data collections where concerns or limitations against publications exist.
+In Addition to allowing users to search the database and show which documents fit a query, aggregates (how many documents fit the query) and comparisons (e.g., do more speeches held by members of one party fit a query than those of another) are possible.
+In this way, researchers might assess the relevance of a data collection for their own research questions before engaging with data owners to ask for permission or collecting the data again themselves.
+
+Beyond the simple functions most people know from Google Books though, the definition of *non-consumptive research* is broader and comprises all computational analysis in which a researcher does not display substantial portions of the original text or image [@hathitrust2023].
+Based on this, HathiTrust and others have experimented with "data capsules".
+HathiTrust describes a capsule as a "system that grants a user access to a virtual machine which is a dedicated, secure desktop environment [...] through which a user can carry out non-consumptive research", yet which does not give researchers the ability to display or download the data [@hathitrust2023].
+Given such a system, a wide range of unsupervised methods and destructive pre-processing steps become available to 
+
+# Sharing Corpora with AmCAT
+
+The Amsterdam Content Analysis Toolkit (AmCAT) has been in development in various guises since about 2001 as a text research / content analysis platform.
+The core of the project has always been a database of documents, combined with graphical user interface and API to make it possible for casual and power users respectively to quickly gather the texts they need.
+In the current fourth iteration of the toolkit, a particular focus was put on sharing data with an audience as broad as possible, but as narrow as legal and ethical circumstances demand.
+Besides providing a new dashboard and API wrappers for `R` and `Python` one of the biggest improvements of AmCAT 4.0 is that it enables and facilitates the access and processing of data that cannot be shared openly, by keeping data owners in direct control of the data, and by employing trusted connections and role-based access control methods.
+Below, we describe some of the functions of the flexible framework access control and guest access and the (pre-processing) actions which extend AmCAT to be a toolkit for *non-consumptive research*.
+Besides querying a database to get counts and trends of about the appearance of certain features, we developed a new framework, which we called `actioncat`, that can be used, for example, for pre-processing actions that allow users without access to the original data to decide which pre-processed versions of texts is then made available.
+The software mentioned can be used for free and deployed by most users with a basic to advanced technical background.
+In the future, we hope to encourage universities and other organisations to make deployed versions available for usage by the research community.
+
+
+## Access Control in Amcat4 Explained
+
+`amcat4` provides fine-grained access control, which enables administrators of an instance to share data in exactly the way they want and control what members of their team and outsiders can do on an index.
+This section explains how access control works in `amcat4` and highlights which features and settings provide infrastructure for non-consumptive research.
+
+We provide two sets of roles: one that is configred globally per user on an `amcat4` instance and one set that can be used per index.
+In combination the three global (reader, writer and admin) and index roles (none, metareader, reader, writer and admin) offer twelve different role levels that are shown in the table below:
+
+| Role Level | Global Role | Index Role In Index A | Description                                                                                                                                                                                                                                                                |
+|------------|-------------|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0          | -           | Guest                 | If a user does not have an explicit role on an index, the guest role (if any) is used. An unauthorized user can still get guest roles, so they can see any indices with a guest role. This is not a specific level, but it serves as a fallback for undefined index roles. |
+| 1          | Reader      | None                  | Can see which indices exist, but cannot access them. Index A is invisible to the user.                                                                                                                                                                                     |
+| 2\*         | Reader      | Metareader            | Can see which indices exist. Can read all properties, do queries, etc. in Index A, but cannot read the ‘text’ attribute.                                                                                                                                                   |
+| 3          | Reader      | Reader                | Can see which indices exist. Can read all properties, do queries, etc. in Index A, but cannot make changes.                                                                                                                                                                |
+| 4          | Reader      | Writer                | Can see which indices exist. Can add/delete documents, add/delete users (up to their own level), and make other changes (but not delete) in Index A.                                                                                                                       |
+| 5          | Reader      | Admin                 | Can see which indices exist, can add/update/delete documents and users (up to their own level) in Index A and delete Index A itself.                                                                                                                                       |
+| 6          | Writer      | None                  | Can create new indexes and users (with at most their own global role). Index A is invisible to the user.                                                                                                                                                                   |
+| 7\*         | Writer      | Metareader            | Can create new indexes and users (with at most their own global role). Can read all properties, do queries, etc.  in Index A, but cannot read the ‘text’ attribute.                                                                                                        |
+| 8          | Writer      | Reader                | Can create new projects and users (with at most their own global role). Can read all properties, do queries, etc.  in Index A, but cannot make changes.                                                                                                                    |
+| 9          | Writer      | Writer                | Can create new projects and users (with at most their own global role). Can add/delete documents, add/delete users (up to their own level), and make other changes in Index A, but can't delete Index A.                                                                   |
+| 10         | Writer      | Admin                 | Can create new projects and users (with at most their own global role). Can add/update/delete documents and users (up to their own level) in Index A and delete Index A itself.                                                                                            |
+| 11         | Admin       | Admin                 | Can delete projects and assign themselves a role on any index role. Can do whatever they want, including deleting the index.                                                                                                                                               |                                                                                                                                           |
+|\* Relevant for non-consumptive research |
+
+: Access roles in amcat4 {#tbl-roles}
+
+Relevant for non-consumptive research are the metareader levels.
+Users with this index role can perform analysis on the data via the AmCAT dashboard or the API, but do not have access to the text data.
+
+Additionally, we can control the default role users have on a given index (see level 0 in the table).
+We call this the guest role of an index.
+This way, it is possible, for example, to have one index where everyone can see the metadata while other indexes on the AmCAT instance are hidden.
+
+Users' global and index role and the guest roles of indexes can be controlled via the dashboard or the API.
+We show this illustrativly in the example below.
+
+However, first we need to highlitght another setting that can modify access to data in `amcat4`: the authentification mode.
+The authentification mode of an `amcat4` instance controls who has access to the data in the first place.
+Unlike the roles, this setting can only be accessed by administrators through the command line on the machine where the instance is hosted.
+If you follow our recommended way of installation (see the [online manual](https://amcat.nl/book/02._getting-started.html#setup-through-docker)), `amcat4` will run in a Docker container.
+When invoked with the command `docker exec -it amcat4 amcat4 config`, an interactive configuration menu will guide the user through various settings.
+The authentication settings will show the follwing explanation:
+
+```{#lst-auth lst-cap="Authentication modes in amcat4"}
+auth: Do we require authorization?
+  Possible choices:
+  - no_auth: everyone (that can reach the server) can do anything they want
+  - allow_guests: everyone can use the server, dependent on index-level guest_role authorization settings
+  - allow_authenticated_guests: everyone can use the server, if they have a valid middlecat login,
+and dependent on index-level guest_role authorization settings
+  - authorized_users_only: only people with a valid middlecat login and an explicit server role can use the server
+
+The current value for auth is AuthOptions.no_auth.
+Enter a new value, press [enter] to leave unchanged, or press [control+c] to abort:
+```
+
+The explanations of the different levels should hopefully be clear, except the term **middlecat login**. 
+For authentication modes beyond allow_guests, people whom you want to grant some kind of access need to log in.
+To make this more secure, we wrote our own authentication provider called **middlecat**.
+It enables the administrator to set up authentication via different identity providers like Google or GitHub, with a fallback solution to let users log in via a one-time email link (if they want to log in again, they need to request a new link).
+We host a middlecat instace at <https://middlecat.up.railway.app>, but as the software is open source, everone can set up their own instance and negotiate with different identity providers to make other authentication options available (e.g., through their university or company).
+
+![Middlecat login screen](https://amcat.nl/book/media/amcat-2-middlecat.png){#fig-middlecat}
+
+In cases where non-consuptive research should be made possible, all modes except *no_auth* can be used.
+The indexes can then be configured to let users have a metareader role explicitly or via the guest role of an index, as explained above.
+
+## Non-Consumptive Research via the AmCAT Dashboard: an Example
+
+As Illustration of the access control, we can use an instance where the authentication mode is set to *allow_guests* and where we added a test index.
+To reproduce this setup, one could spin up an instance of the AmCAT suite using [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) (you can find a more detailed explanations in the [AmCAT manual](https://amcat.nl/book/02._getting-started.html)):
+
+```{#lst-setup .bash lst-cap="Creating an AmCAT instance through Docker"}
+# download our docker compose file with curl or manually
+curl -O https://raw.githubusercontent.com/ccs-amsterdam/actioncat/main/actions/dfm/docker-compose.yml
+# run docker compose to download and start the AmCAT applications
+docker-compose up --pull="missing" -d
+# create a test index to use in this example
+docker exec -it amcat4 amcat4 create-test-index
+# configure the instance to run in allow_guests (make sure to also set you email address as admin email, or you are locked out)
+docker exec -it amcat4 amcat4 config
+```
+
+We can then change the guest role of the test index through the web dashboard at <http://localhost/> (if you hosted the instance locally on your computer):
+
+1. Log into the dashboard
+
+![Web dashboard of AmCAT](https://amcat.nl/book/media/amcat-1.png){#fig-dashboard}
+
+2. Select the *state_of_the_union* index and go to settings:
+
+![Change guest role of index state_of_the_union](media/sotu_guest_role.png){#fig-cha-roles}
+
+After this, both users with and without access to the text data are still able to perform simple frequency analyses using text queries:
+
+![Frequency analysis](media/sotu_analysis_1.png){#fig-analysis1}
+
+Users can also compare document groups based on meta fields:
+
+![Comparison based on party in the state_of_the_union index](media/sotu_analysis_2.png){#fig-analysis2}
+
+Only when users try to see more of a text than a short snippet do the index roles matter:
+
+![User with no role](media/sotu_text_guest.png){#fig-guest}
+
+![User with reader role](media/sotu_text_reader.png){#fig-reader}
+
+As explained above, we could have accomplished the same by assiging a specific user either role level 2 or 7.
+
+Through the fine-grained access control and the dashboard, AmCAT offers ways to query, visualise and analyse text data without giving users access to the underlying data.
+This allows researchers to make datasets available for non-consuptive research where it is not possible to publicly share the full data due to copyright, privacy, or other concerns.
+
+# Packaged Non-Consumptive Analysis Workflows
+
+While `amcat4` offers rudimentary analysis methods for users with metareader access like counting and cross-tabulating documents using queries, we also developed and addon framework to AmCAT that makes it possible to run entire analysis workflows in a non-consuptive way.
+We call this framework `actioncat`
+The basic idea we implemented is to leverage the open source Docker infrastrucre, which we also employ to make the AmCAT suite of packages available, to let users create specialised workflows in order to perform analyses on data they do not have access to.
+
+We offer two example *actions* (which is what we call predefined workflows that are packaged in a Docker image/container), one in `R`, one in `Python`:
+
+- The `R` action adds a tidy document-feature representation field to an index
+- The `Python` action adds a document embeddings field to an index
+
+Both of these actions are destructive preprocessing workflows in the sense that the original text cannot be reconstructed from the new field.
+This makes these actions well suited for indexes where the full text can not be shared because of copyright, privacy or other concerns.
+Using AmCAT's fine grained access control features, the full text can be hidden from users without specific permissions, but the preprocessed data can still be shared with a wider audience.
+Users can imitate these examples to create their own workflows and send them to administrators of an `amcat4` instance.
+After approval, the administrator can then run a workflow using just two commands: one to download and one to run the action.
+Compared to sending just `R` or `Python` files for processing, this approach has the advantage that the action will have all the right dependencies already and perform the action exactly as on the user's machine (therby standardizing the process to a certain degree and making the admins life a little easier).
+
+## Non-Consumptive Research via `actioncat`: an Example
+
+To illustrate the basic steps from the administrators perspective, we use one of the example workflows in the repository here: <https://github.com/ccs-amsterdam/actioncat>.
+
+First, we spin up an instance of the AmCAT suite using [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) as above:
+
+```{#lst-setup2 .bash lst-cap="Creating an AmCAT instance through Docker"}
+# download our docker compose file with curl or manually
+curl -O https://raw.githubusercontent.com/ccs-amsterdam/actioncat/main/actions/dfm/docker-compose.yml
+# run docker compose to download and start the AmCAT applications
+docker-compose up --pull="missing" -d
+# create a test index to use in this example
+docker exec -it amcat4 amcat4 create-test-index
+```
+
+Administrators can then use actions with the same basic approach:
+
+```{#lst-dfm .bash lst-cap="Running the predefined dfm action"}
+# download the action file with curl or manually
+curl -O https://raw.githubusercontent.com/ccs-amsterdam/actioncat/main/actions/dfm/docker-compose.yml
+# run the action
+docker-compose up --pull="missing" -d
+```
+
+In case of a user defined action, only the download link will be different.
+The action will run until it has added a tidy document-feature representation to all texts in the test index.
+You can check this via the web interface at <http://localhost/>:
+
+![Example text preview including dfm](https://github.com/ccs-amsterdam/actioncat/raw/main/media/dfm.png)
+
+or using the `amcat4r` package:
+
+```{#lst-amcat4r .r lst-cap="Querying the new field through the API"}
+if (!requireNamespace("amcat4r", quietly = TRUE)) remotes::install_github("ccs-amsterdam/amcat4r")
+library(amcat4r)
+amcat_login("http://localhost/amcat")
+sotu_dfm <- query_documents(index = "state_of_the_union", queries = NULL, fields = c(".id", "dfm"))
+sotu_dfm
+
+
+    # A tibble: 232 × 2
+       .id      dfm           
+       <id_col> <list>        
+     1 9d8…0d0  <list [3,370]>
+     2 846…068  <list [2,176]>
+     3 2b6…aa5  <list [2,895]>
+     4 4f3…8bf  <list [3,172]>
+     5 c36…4b0  <list [3,739]>
+     6 5a2…8ba  <list [3,745]>
+     7 8b0…5f2  <list [3,927]>
+     8 484…893  <list [3,308]>
+     9 a3a…a70  <list [2,554]>
+    10 57c…840  <list [1,729]>
+    # i 222 more rows
+```
+
+By changing the `docker-compose.yml`, it is possible to control which index the action is applied on, the name of the text field and the name of the new dfm field by changing the environment variables:
+
+```{r}
+#| echo: false
+#| eval: true
+compose <- readLines("https://raw.githubusercontent.com/ccs-amsterdam/actioncat/main/actions/dfm/docker-compose.yml", warn = FALSE)
+knitr::asis_output(paste0(c("```", compose, "```"), collapse = "\n"))
+```
+
+So far, we ran this on an instance without authentication.
+If we [turn on authentication](https://amcat.nl/book/04._sharing.html), we need to also give the container access to a valid token.
+This can be done by giving the action access to a valid token file.
+To create a token file, first log into the instance:
+
+```{#lst-login .r lst-cap="Running the predefined dfm action"}
+amcat_login("http://localhost/amcat", cache = 1L)
+```
+
+This prompt the user to log into the AmCAT instance.
+When `cache = 1L` is selected, a token file is written to the local computer.
+One can find it by following the path returned by:
+
+```{#lst-rappdirs .r lst-cap="Finding the local token directory"}
+#| eval: true
+rappdirs::user_cache_dir("httr2")
+```
+
+Now it is possible to link this directory to the Docker container by changing the commented out lines in `docker-compose.yml` to:
+
+```
+    volumes:
+      - ~/.cache/httr2:/root/.cache/httr2 # [local path]:[container path]
+```
+
+Note that the path returned by `rappdirs::user_cache_dir("httr2")` is the local path and is added before the `:`.
+If the action is run on a server (which is the use case that makes most sense), one needs to first copy the token there (e.g., copy it to `/srv/amcat/token` and then link this folder to `/root/.cache/httr2` in the container).
+
+# Conclusion
+
+A crucial criterion for the infrastructure developed by OPTED is scientific transparency to facilitate replication, collaboration, and efficient re-use of academic contributions in terms of data collection and tool creation.
+The features in the AmCAT suite of packages enable researchers to make data available in ways that conform with copyright, privacy, or other concerns.
+Following the ideas developed within the concept of non-consumptive research, we can enable new analyses or replication effectivly without sharing access to the full material.
+
+
+{{< pagebreak >}}
+
+# References

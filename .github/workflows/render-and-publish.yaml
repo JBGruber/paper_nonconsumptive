@@ -1,0 +1,38 @@
+name: Render and deploy Quarto files
+on:
+  push:
+  pull_request:
+
+jobs:
+  quarto-render-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install extenstions
+        run: |
+          quarto add vanatteveldt/ccr-quarto
+          curl  -o _extensions/citeproc.lua https://raw.githubusercontent.com/andrewheiss/quarto-wordcount/main/_extensions/wordcount/citeproc.lua
+          curl  -o _extensions/wordcount.lua https://raw.githubusercontent.com/andrewheiss/quarto-wordcount/main/_extensions/wordcount/wordcount.lua
+          curl  -O https://raw.githubusercontent.com/ccr-journal/ccr-quarto/main/aup_logo.pdf
+
+      - name: Render
+        run: |
+          quarto render non-consumptive.qmd
+
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYY-MM-DD_HHmm
+          utcOffset: "+02:00"
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "v${{ steps.current-time.outputs.formattedTime }}"
+          title: "Compiled-at-${{ steps.current-time.outputs.formattedTime }}"
+          prerelease: true
+          files: "non-consumptive.pdf"
