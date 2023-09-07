@@ -17,6 +17,9 @@ jobs:
       - name: Install extenstions
         run: |
           quarto add vanatteveldt/ccr-quarto
+      
+      - name: curl
+        run: |    
           curl  -o _extensions/citeproc.lua https://raw.githubusercontent.com/andrewheiss/quarto-wordcount/main/_extensions/wordcount/citeproc.lua
           curl  -o _extensions/wordcount.lua https://raw.githubusercontent.com/andrewheiss/quarto-wordcount/main/_extensions/wordcount/wordcount.lua
           curl  -O https://raw.githubusercontent.com/ccr-journal/ccr-quarto/main/aup_logo.pdf
