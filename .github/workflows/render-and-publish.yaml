@@ -40,9 +40,11 @@ jobs:
         with:
           format: YYYY-MM-DD_HHmm
           utcOffset: "+02:00"
-      - uses: "marvinpinto/action-automatic-releases@latest"
+          
+      - name: make the pdf a pre-release
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          repo_token: "${{ secrets.GH_TOKEN }}"
           automatic_release_tag: "v${{ steps.current-time.outputs.formattedTime }}"
           title: "Compiled-at-${{ steps.current-time.outputs.formattedTime }}"
           prerelease: true
