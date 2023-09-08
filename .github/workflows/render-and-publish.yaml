@@ -22,6 +22,8 @@ jobs:
           packages:
             any::knitr
             any::rmarkdown
+            any::rio
+            any::kableExtra
 
       - name: Install extenstions
         run: |
