@@ -31,9 +31,14 @@ shorttitle: "Sharing *is* Caring (about Research)"
 bibliography: bibliography.bib
 execute:
   eval: false
-code-line-numbers: true
+code-line-numbers: false
 abstract: |
-  This paper urges you to share your data and presents the The Amsterdam Content Analysis Toolkit, which can be used to share your copora as widely as possible while respecting legal and ethical limitations.
+  A decade ago, the computational turn in communication science was heralded by promises of unseen treasure troves of available digital text containing communication of journalists and social media users.
+  As these treasures become more closly guarded today, the field needs to think of new strategies to continue to enable researchers who want to engage in computational communication research.
+  One of these strategies is to make data sharing a more common practice in the field.
+  In this article, we outline four avenues to share as much as your data as possible, while still honouring ehtical and legal restictions.
+  Given the relative lack of infrastructure for some of these avenues, we also highlight the capacities of the Amsterdam Content Analysis Toolkit (AmCAT) to enable non standard sharing strategies.
+  We especially highlight the functions for *non-consumptive research* -- which means analyses methods that can be performed without access to the full text.
 ---
 
 Text-as-data has arrived as a prominent method for content analysis in the social sciences.
@@ -193,29 +198,58 @@ It comes at the right time for researchers who want to take one of the avenues d
 Besides providing a new dashboard and API wrappers for `R` and `Python` -- which make them great for working with collected corpora, or selecting a relevant subset -- one of the biggest improvements of AmCAT 4.0 is that it enables and facilitates the access and processing of data that cannot be shared openly by keeping data owners in direct control of the data, and by employing trusted connections and role-based access control methods.
 Below, we describe some of the functions of the flexible framework access control and guest access and the (pre-processing) actions which extend AmCAT to be a toolkit for *non-consumptive research*.
 Besides querying a database to get counts and trends of about the appearance of certain features, we developed a new framework, which we called `actioncat`, that can be used, for example, for pre-processing actions that allow users without access to the original data to decide which pre-processed versions of texts is then made available.
-The software mentioned can be used for free and deployed by most users with a basic to advanced technical background.
+The toolkit can be used for free and deployed by most users with a basic to advanced technical background.
+Because of the modular design, shown in @fig-digram, deployments of AmCAT can be integrated in many existing infrastructures.
 In the future, we hope to encourage universities and other organisations to make deployed versions available for usage by the research community.
 
+![Design diagram of the Amsterdam Content Analysis Toolkit (AmCAT)](media/amcat-flow.drawio.png){#fig-digram}
+
+## AmCAT Dashboard to present corpora
+
+For the first avenue we discussed above -- sharing an entire dataset including the full text -- there are good options already available.
+The most commonly used is the open source Dataverse Project^[<https://dataverse.org/>], which many might know from the most widely used distributed version at Harvard.
+Using this route is popular among researcher, with one reason likely being that data sets receive a DOI (Digital Object Identifier), which makes them easily citable, and the other being that the service is free.
+
+One downside that we identified specifically for text and even more so for image and video data is that data sets can only be downloaded in full or in the parts the data set creators have pre-determined, for example, one file per country or period.
+For survey data, for example, this is not an issue as files are usually small and using a subset of the data is often less relevant.
+For corpora with typical sizes of tens or hundreds of thousands of documents, the files can take substantial amounts of time to be downloaded from a repository (depending on the speed of the connection and the bandwith of the repository host).
+
+In AmCAT, we provide graphical user interface and API packages in `R` or `Python` to enable users to query the database using the powerful query string syntax developed by Elasticsearch^[
+http://web.archive.org/web/20230908093502/https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
+].
+This can help researchers to evaluate whether a corpus contains the relevant data for their research or and select only the required parts for download.
+As an example, we downloaded the *ParlEE* plenary speeches data set, which contains speeches legislative chambers in from eight EU states [@ParlEE2022], and made it available through AmCAT.
+The data is provided as one csv file per country on Harvard Dataverse, with file sizes ranging from 281MB to 1.8GB.
+In @fig-parlee we show an example query, which selects documents that feature at least one word related to the migration debate.
+Someone trying to decide if this was a good data set to study this debate would quickly see the shard peak in frequency in 2015, without needing to download anything.
+Give that this is a data set that comes with no restrictions, they could then start to use it for their analysis immediately.
+
+![AmCAT Interface for the Austrian corpus in ParlEE, queried for texts on migration](media/migra_parlee.png){#fig-parlee}
+
+While AmCAT is not at a stage yet where a flagship distributed node could offer DOIs or free permanent storage, like the Harvard Dataverse does, there are no technical limitations that prevent that.
+For the ability to present ones collected data to other researchers, or even the general public, to reproduce, extend and build on original analysis AmCAT offers attractive options that would otherwise need to be built from ground up.
 
 ## Access Control in Amcat4 Explained
 
-`amcat4` provides fine-grained access control, which enables administrators of an instance to share data in exactly the way they want and control what members of their team and outsiders can do on an index.
-This section explains how access control works in `amcat4` and highlights which features and settings provide infrastructure for non-consumptive research.
+For the remaining three avenues -- sharing pre-processed text, sharing only metadata or enabling *non-consumptive research* -- the access control features of AmCAT are key.
+`amcat4`, the database module of AmCAT, provides fine-grained access control, which enables administrators of an instance to share data in exactly the way they want and control what members of their team and outsiders can do on an index.
+This section explains how access control works in `amcat4` and highlights which features and settings provide infrastructure for the above described avenues.
 
-We provide two sets of roles: one that is configred globally per user on an `amcat4` instance and one set that can be used per index.
-In combination the three global (reader, writer and admin) and index roles (none, metareader, reader, writer and admin) offer twelve different role levels that are shown in the table below:
+We define two sets of roles that can be set by administrators or users: one that is configured globally per user on an `amcat4` instance and one set that can be used per index (i.e., a corpus.
+In combination the three global (reader, writer and admin) and index roles (none, metareader, reader, writer and admin) offer twelve different role levels that are shown in @tbl-roles.
+
 
 ```{r}
 #| eval: true
 #| echo: false
+#| label: tbl-roles
+#| tbl-cap: "Access roles in amcat4"
 library(kableExtra)
 rio::import("roles.csv") |> 
   knitr::kable(format = "latex", 
                booktabs = TRUE, 
                longtable = FALSE,
-               linesep = "",
-               caption = "Access roles in amcat4",
-               label = "tbl-roles") |> 
+               linesep = "") |> 
   kable_styling(font_size = 9,
                 full_width = FALSE,
                 latex_options = c("repeat_header")) |> 
@@ -227,14 +261,17 @@ rio::import("roles.csv") |>
   landscape()
 ```
 
+For the three avenues we described above for researchers who can not share their full data, role levels 2 and 7 in @tbl-roles are crucial.
+What is important to note is that query functionalities stay enabled even in levels where the user has no access to the full text, as shown in @fig-guest.
+For avenues two and three -- metadata access and access to pre-processed data -- this can be a valuable addition to just making the data available:
+what we described in the last section, the additional effort needed to obtain a data set from the Dataverse before it is clear if the data is relevant, is exponentially larger if the goal is to rehydrate a corpus give the URLs of pre-selected documents;
+in case of data that has undergone destructive pre-processing steps, the query function can provide invaluable validation capabilities as researchers can test if their assumption about the original data are correct.
+The simple counts, frequency plots and query functionality therefore fill an important need for researchers who want to use a dataset, as they allow for initial non-consumptive research on a corpus.
+The functions available through the dashboard are additionally mirrored in the API.
 
-Relevant for non-consumptive research are the metareader levels.
-Users with this index role can perform analysis on the data via the AmCAT dashboard or the API, but do not have access to the text data.
-
-Additionally, we can control the default role users have on a given index (see level 0 in the table).
+Additionally to these twelve roles, we can control the default role users have on a given index (see level 0 in the table).
 We call this the guest role of an index.
 This way, it is possible, for example, to have one index where everyone can see the metadata while other indexes on the AmCAT instance are hidden.
-
 Users' global and index role and the guest roles of indexes can be controlled via the dashboard or the API.
 We show this illustrativly in the example below.
 
@@ -245,7 +282,7 @@ If you follow our recommended way of installation (see the [online manual](https
 When invoked with the command `docker exec -it amcat4 amcat4 config`, an interactive configuration menu will guide the user through various settings.
 The authentication settings will show the follwing explanation:
 
-```{#lst-auth lst-cap="Authentication modes in amcat4"}
+```{#lst-auth .bash lst-cap="Authentication modes in amcat4"}
 auth: Do we require authorization?
   Possible choices:
   - no_auth: everyone (that can reach the server) can do anything they want
@@ -266,7 +303,7 @@ The explanations of the different levels should hopefully be clear, except the t
 For authentication modes beyond allow_guests, people whom you want to grant some kind of access need to log in.
 To make this more secure, we wrote our own authentication provider called **middlecat**.
 It enables the administrator to set up authentication via different identity providers like Google or GitHub, with a fallback solution to let users log in via a one-time email link (if they want to log in again, they need to request a new link).
-We host a middlecat instace at <https://middlecat.up.railway.app>, but as the software is open source, everone can set up their own instance and negotiate with different identity providers to make other authentication options available (e.g., through their university or company).
+We host a middlecat instace at <https://middlecat.up.railway.app>, but as the software is open source, everyone can set up their own instance and negotiate with different identity providers to make other authentication options available (e.g., through their university or company).
 
 ![Middlecat login screen](https://amcat.nl/book/media/amcat-2-middlecat.png){#fig-middlecat}
 
@@ -292,37 +329,48 @@ docker exec -it amcat4 amcat4 config
 ```
 
 We can then change the guest role of the test index through the web dashboard at <http://localhost/> (if you hosted the instance locally on your computer):
-
-1. Log into the dashboard
-
-![Web dashboard of AmCAT](https://amcat.nl/book/media/amcat-1.png){#fig-dashboard}
-
-2. Select the *state_of_the_union* index and go to settings:
+First, users need to log into the dashboard as explained above.
+If their mail address, which is supplied either by the identity provider or directly, matches an admin account or has another role that can change the roles of other users, a setting page then becomes available to them, which is shown in @fig-cha-roles.
 
 ![Change guest role of index state_of_the_union](media/sotu_guest_role.png){#fig-cha-roles}
 
-After this, both users with and without access to the text data are still able to perform simple frequency analyses using text queries:
+Switching perspectives for a second, we can look at an index, in this case the example data included in `amcat4`, from the perspective of a user.
+After selecting the index to which the user has access -- *state_of_the_union* -- they can perform a search as shown in @fig-analysis1.
+They can also switch from *Summary* to *Graph/Table* tab to compare document groups based on meta fields.
+In @fig-analysis2 we show a frequency comparison of documents fitting the search "america and europa", which retrieves documents containing both terms.
+Party is a meta information of the texts, but can be used to group documents.
+For these simple frequency analyses and text query functions there is no difference for users with and without access to the text data.
+Only when a users attempts to access the full text -- beyond the short snippet shown in the summary -- is there a difference.
+@fig-reader and @fig-guest show the comparison between the view of a *reader* and *metareader* respectively.
+
+::: {#fig-analyses layout-ncol=2}
 
 ![Frequency analysis](media/sotu_analysis_1.png){#fig-analysis1}
 
-Users can also compare document groups based on meta fields:
+![Frequency comparison grouped by party](media/sotu_analysis_2.png){#fig-analysis2}
 
-![Comparison based on party in the state_of_the_union index](media/sotu_analysis_2.png){#fig-analysis2}
+Analyses in the AmCAT dashboard
+:::
 
-Only when users try to see more of a text than a short snippet do the index roles matter:
+::: {#fig-role-comparison layout-ncol=2}
 
 ![User with no role](media/sotu_text_guest.png){#fig-guest}
 
 ![User with reader role](media/sotu_text_reader.png){#fig-reader}
 
-As explained above, we could have accomplished the same by assiging a specific user either role level 2 or 7.
+Comparison: *reader* and *metareader* text preview
+:::
 
-Through the fine-grained access control and the dashboard, AmCAT offers ways to query, visualise and analyse text data without giving users access to the underlying data.
-This allows researchers to make datasets available for non-consuptive research where it is not possible to publicly share the full data due to copyright, privacy, or other concerns.
+In sum, users with no specific rights can still explore the corpus to a large degree.
+Through the fine-grained access control and the dashboard, AmCAT offers ways to query, visualize and analyse text data without giving users access to the underlying data.
+If they then decide that the data would be relevant for their research, they can try to obtain usage right from the data owners somehow.
+The administrator of the AmCAT instance can then grant them a *reader* role or above, so they could access the full text.
+Alternatively, they could use the meta information of the data set or a filtered subset of it, to 'rehydrate' the corpus from its original source.
+On the other side of things, AmCAT allows researchers to make data sets available for non-consumptive research where it is not possible to publicly share the full data due to copyright, privacy, or other concerns.
 
-# Packaged Non-Consumptive Analysis Workflows
+## Packaged Non-Consumptive Analysis Workflows
 
-While `amcat4` offers rudimentary analysis methods for users with metareader access like counting and cross-tabulating documents using queries, we also developed and addon framework to AmCAT that makes it possible to run entire analysis workflows in a non-consuptive way.
+While `amcat4` offers rudimentary analysis methods for users with *metareader* access like counting and cross-tabulating documents using queries, we also developed and addon framework to AmCAT that makes it possible to run entire analysis workflows in a non-consuptive way.
 We call this framework `actioncat`
 The basic idea we implemented is to leverage the open source Docker infrastrucre, which we also employ to make the AmCAT suite of packages available, to let users create specialised workflows in order to perform analyses on data they do not have access to.
 
@@ -338,7 +386,7 @@ Users can imitate these examples to create their own workflows and send them to 
 After approval, the administrator can then run a workflow using just two commands: one to download and one to run the action.
 Compared to sending just `R` or `Python` files for processing, this approach has the advantage that the action will have all the right dependencies already and perform the action exactly as on the user's machine (therby standardizing the process to a certain degree and making the admins life a little easier).
 
-## Non-Consumptive Research via `actioncat`: an Example
+### Non-Consumptive Research via `actioncat`: an Example
 
 To illustrate the basic steps from the administrators perspective, we use one of the example workflows in the repository here: <https://github.com/ccs-amsterdam/actioncat>.
 First, we spin up an instance of the AmCAT suite using [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) as in @lst-setup.
@@ -346,6 +394,7 @@ Administrators can then use actions with the same basic approach as shown in @ls
 In case of a user defined action, the only difference for the administrator will be the link to the Docker Compose file -- which could also be sent via email, for example.
 The action will download the container image, start a process and this specific one will run until it has added a tidy document-feature representation to all texts in the test index.
 The user can access the results immediately as they are processed via the Web interface as shown in @fig-dfm or using the code in @lst-amcat4r to access the API.
+By changing the `docker-compose.yml` (shown in @lst-docker), it is possible to control which index the action is applied on, the name of the text field and the name of the new dfm field by changing the environment variables.
 
 ```{#lst-dfm .bash lst-cap="Running the predefined dfm action"}
 # download the action file with curl or manually
@@ -383,8 +432,6 @@ sotu_dfm
     # i 222 more rows
 ```
 
-By changing the `docker-compose.yml` (shown in @lst-docker), it is possible to control which index the action is applied on, the name of the text field and the name of the new dfm field by changing the environment variables.
-
 ```{#lst-docker .r lst-cap="Querying the new field through the API"}
 version: "3.8"
 services:
@@ -407,11 +454,28 @@ services:
 
 # Conclusion
 
+As the gold mines of digital freely available text data are being more closely gated by the companies who own them, the field needs to rethink the value of data sets.
+When social media data was cheaply available, it might not have mattered much that corpora collected digital dust on the hard drives of most researchers after their research on it was published.
+Today, however, these corpora are more valuable than ever, as they can fuel the research efforts of scientists who have lost access due to limited funding and a lack of industry connections.
+In this contribution, we presented four avenues to sharing a corpus for secondary analysis.
+Even when it is not possible for legal or ethical reasons to share the full text of a corpus (Avenue 1), we showed that there are various useful parts that can neverthless be shared:
+versions of the text that have undergone destructive pre-processing, meaning that full texts cannot be reconstructed and hence can't be consumed (Avenue 2)
+metadata, including identifiers of the documents, so other researchers can rebuild the same pre-filtered corpus about a topic (Avenue 3);
+or making the data set accessible for *non-consumptive research*, meaning texts can't be consumed (read) by still analyzed via computational methods.
+
+We additionally discussed the fourth iteration of the Amsterdam Content Analysis Toolkit (AmCAT), which can be used to realize all of the discussed avenues.
+This means that researchers are not hindered by a lack of technical options to work around data sharing limitations.
+AmCAT enables researchers to share their data in a way that it is possible to query the database using (a combination) of keywords, allowing those who consider using a corpus for secondary analysis to check whether it contains relevant documents.
+As the query functions constitute *non-consumptive research*, they are enabled for data set with open as well as limited access (i.e., where users can't see the full text).
+
+Additionally, we provide a framework that enables arbitrary workflows to be performed on data with limited access.
+Given approval by an administrator who has to check that a workflow does not return protected data, users can run any pre-processing or analysis scripts they wish, without ever having to see the actual data.
+They can then access a document-feature-matrix, embedding or whatever other version of the text they might want.
 This does not allow quite the interactive exploration that, e.g., HathiTrust's "data capsules" do, as workflows need to be pre-approved, but the framework is a lot more flexible in that any workflow can be packaged and sent to the admin of an AmCAT instance for quick and seamless review and authorization.
 
-A crucial criterion for the infrastructure developed by OPTED is scientific transparency to facilitate replication, collaboration, and efficient re-use of academic contributions in terms of data collection and tool creation.
-The features in the AmCAT suite of packages enable researchers to make data available in ways that conform with copyright, privacy, or other concerns.
-Following the ideas developed within the concept of non-consumptive research, we can enable new analyses or replication effectivly without sharing access to the full material.
+In sum, a crucial criterion for  data storing infrastructure going forward should be scientific transparency to facilitate replication, collaboration, and efficient re-use of academic contributions in terms of data collection and tool creation.
+The features in the AmCAT enable researchers to make data available in ways that conform with copyright, privacy, or other concerns.
+Following the ideas developed within the concept of *non-consumptive research*, we can enable new analyses or replication effectively without sharing access to the full material.
 
 
 {{< pagebreak >}}
