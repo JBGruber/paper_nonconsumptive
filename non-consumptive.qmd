@@ -305,7 +305,7 @@ To make this more secure, we wrote our own authentication provider called **midd
 It enables the administrator to set up authentication via different identity providers like Google or GitHub, with a fallback solution to let users log in via a one-time email link (if they want to log in again, they need to request a new link).
 We host a middlecat instace at <https://middlecat.up.railway.app>, but as the software is open source, everyone can set up their own instance and negotiate with different identity providers to make other authentication options available (e.g., through their university or company).
 
-![Middlecat login screen](https://amcat.nl/book/media/amcat-2-middlecat.png){#fig-middlecat}
+![Middlecat login screen](media/amcat-2-middlecat.png){#fig-middlecat}
 
 In cases where non-consuptive research should be made possible, all modes except *no_auth* can be used.
 The indexes can then be configured to let users have a metareader role explicitly or via the guest role of an index, as explained above.
@@ -404,7 +404,7 @@ curl -O https://raw.githubusercontent.com/ccs-amsterdam/actioncat/main/
 docker-compose up --pull="missing" -d
 ```
 
-![Example text preview including dfm](https://github.com/ccs-amsterdam/actioncat/raw/main/media/dfm.png){#fig-dfm}
+![Example text preview including dfm](media/dfm.png){#fig-dfm}
 
 ```{#lst-amcat4r .r lst-cap="Querying the new field through the API"}
 if (!requireNamespace("amcat4r", quietly = TRUE))   
