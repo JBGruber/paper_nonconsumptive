@@ -38,49 +38,55 @@ abstract: |
   One of these strategies is to make data sharing a more common practice in the field.
   In this article, we outline four avenues to share as much as your data as possible, while still honouring ehtical and legal restictions.
   Given the relative lack of infrastructure for some of these avenues, we also highlight the capacities of the Amsterdam Content Analysis Toolkit (AmCAT) to enable non standard sharing strategies.
-  We especially highlight the functions for *non-consumptive research* -- which means analyses methods that can be performed without access to the full text.
+  We especially highlight the functions for *non-consumptive research* -- which means analyses methods that can be performed without access to the full data set.
 ---
 
 Text-as-data has arrived as a prominent method for content analysis in the social sciences.
-The twin promises of making large scale analysis of text corpora feasible while keeping the costs for manual annotation to a minimum convinced institutions and individual researchers to make considerable investments into methods training and embrace the computational revolution of communication science in the last decade \[@grimmerTADA2013; (e.g., see overview articles of Brady, 2019; Hilbert et al., 2019; Lazer & Radford, 2017; van Atteveldt & Peng, 2018; Van Atteveldt et al., 2019)\].
+The twin promises of making large scale analysis of text corpora feasible while keeping the costs for manual annotation to a minimum convinced institutions and individual researchers to make considerable investments into methods training and embrace the computational revolution of communication science in the last decade [e.g. @grimmerTADA2013; see overview articles of @brady2019challenge; @hilbert19; @lazer2017data; @atteveldt18cmm; @AtteveldtRoadmap2019].
 However, since the early days, a lot of the hopes and enthusiasm has evaporated as access to the data gold mines of social media databases and digital news archives are progressively limited by their owners.
 And more importantly, pressing questions about political communication stay untackled, as researchers are shut out.
 
-Just this year, Twitter, which was renamed to $\mathbb{X}$ recently, eliminated the free academic access to their API^[
-<https://web.archive.org/web/20230831000123/https://www.theverge.com/2023/3/30/23662832/twitter-api-tiers-free-bot-novelty-accounts-basic-enterprice-monthly-price>
-] and Reddit has shut down access to its API^[
-<https://web.archive.org/web/20230829045754/https://www.reddit.com/r/modnews/comments/134tjpe/reddit_data_api_update_changes_to_pushshift_access/>
-] for Pushshift, a service on which most academic research of that social media site relied.
-Meanwhile Meta's tool to gather data from Facebook and Instagram, Crowdtangle, has been publicly rumored to be closing down for several years^[
-<https://www.bloomberg.com/news/articles/2022-06-23/meta-pulls-support-for-tool-used-to-keep-misinformation-in-check>;
-<https://web.archive.org/web/20230816171112/https://www.theverge.com/2022/6/23/23180357/meta-crowdtangle-shut-down-facebook-misinformation-viral-news-tracker>;
-<https://web.archive.org/web/20230827165945/https://www.abc.net.au/news/science/2022-08-16/facebook-crowdtangle-meta-disinformation-transparency/101325544>
-], making it difficult to plan, or request funding for, any projects relying on this data.
+Just this year, Twitter, which was renamed to $\mathbb{X}$ recently, eliminated the free academic access to their API[^twitter]
+ and Reddit has shut down access to its API[^reddit] for Pushshift,
+ a service on which most academic research of that social media site relied.
+Meanwhile Meta's tool to gather data from Facebook and Instagram, Crowdtangle, has been publicly rumored to be closing down for several years[^meta], making it difficult to plan, or request funding for, any projects relying on this data.
 Likewise, digital news archives, like LexisNexis, increasingly guard their sites against large scale data collection or make it out of reach expensive.
 Meanwhile, newly developed or strengthened privacy and ethical standards and laws -- while both important and welcome -- further limit access to data for analysis.
-The Post-API Age, which Freelon predicted in 2018, seems to have reached a new stage and the promised gold mines of digital communication traces are no longer accessible.
+The Post-API Age, as predicted by  @freelonPostAPI2018, seems to have reached a new stage and the promised gold mines of digital communication traces are no longer accessible.
 
-In sum, this limited data availability also broadens the gap between academics once more.
-While computational methods have decreased the funding needs for analysis, limited availability of data leads to new divides in the field between those who can afford to negotiate access, or have industry ties that enable them to collaborate with social media companies, and those who cannot.
+[^twitter]: <https://web.archive.org/web/20230831000123/https://www.theverge.com/2023/3/30/23662832/twitter-api-tiers-free-bot-novelty-accounts-basic-enterprice-monthly-price>
+[^reddit]: <https://web.archive.org/web/20230829045754/https://www.reddit.com/r/modnews/comments/134tjpe/reddit_data_api_update_changes_to_pushshift_access/>
+[^meta]:
+  <https://www.bloomberg.com/news/articles/2022-06-23/meta-pulls-support-for-tool-used-to-keep-misinformation-in-check>;
+  <https://web.archive.org/web/20230816171112/https://www.theverge.com/2022/6/23/23180357/meta-crowdtangle-shut-down-facebook-misinformation-viral-news-tracker>;
+  <https://web.archive.org/web/20230827165945/https://www.abc.net.au/news/science/2022-08-16/facebook-crowdtangle-meta-disinformation-transparency/101325544>
+
+In sum, this limited data availability also broadens the gap between academics once more:
+While computational methods have decreased the funding needs for analysis,
+limited availability of data leads to new divides in the field between those who can afford to negotiate access,
+or have industry ties that enable them to collaborate with social media companies, and those who cannot --
+also limiting who can reproduce or check such research.
 Likewise, web scraping content, as @freelonPostAPI2018 suggests, requires know-how and resources not available to all researchers.
-Especially as more platforms, outlets and individuals try to block their content from being scraped by AI companies -- and de facto everyone else.^[
-<https://www.nytimes.com/2023/07/15/technology/artificial-intelligence-models-chat-data.html>]
-These problems have been recognised in the field and are discussed as important challenges at methodological and issue specific conferences^[
-Like the keynote roundtable at Comptext 2023 or the *The Post-API Conference* Annenberg Public Policy Center in 2023.
-] as well as in specialized working groups like the EDMO Working Group on Access to Platform Data^[
-<https://web.archive.org/web/20230606203119/https://edmo.eu/2021/08/30/launch-of-the-edmo-working-group-on-access-to-platform-data/>
-].
+Especially as more platforms, outlets and individuals try to block their content from being scraped by AI companies --
+and de facto everyone else.[^data]
+These problems have been recognised in the field and are discussed as important challenges at methodological and issue specific conferences[^comptext] as well as in specialized working groups like the EDMO Working Group on Access to Platform Data[^edmo]
+
+[^comptext]: Like the keynote roundtable at Comptext 2023 or the *The Post-API Conference* Annenberg Public Policy Center in 2023.
+[^data]: <https://www.nytimes.com/2023/07/15/technology/artificial-intelligence-models-chat-data.html>
+[^edmo]: <https://web.archive.org/web/20230606203119/https://edmo.eu/2021/08/30/launch-of-the-edmo-working-group-on-access-to-platform-data/>
 
 In this contribution, we thus want to highlight a mitigation strategy that grows in importance given the narrowing ways to access communication data:
 sharing already gathered corpora for secondary analysis.
 For data collected through, e.g., surveys, this strategy has been established for decades.
-For text corpora, there are often legal or ethical barriers to what can be shared.
-We thus present four avenues to share data sets, structured by what is legally and morally justifiable in light of the interests of data owners.
+For text corpora, there are often legal or ethical barriers to what can be shared:
+Most textual data is copyrighted, and moreover for some data (such as interpersonal communication)
+there are privacy and other ethical concerns.
+
+Specifically, we present four avenues to share data sets, structured by what is legally and morally justifiable in light of the interests of data owners.
 We put a particular focus on the possibility of making data available for *non-consumptive research*, in cases where other strategies appear impossible.
 Some of the options we discuss rely on infrastructure that currently does not exist, like severs to host tools for *non-consumptive research*.
 We thus additionally offer an open source software toolkit which allows universities, other institutions, or even individual researchers to enable almost anyone to share at least a portion of their collected data online, while respecting legal and ethical limitations to what can and cannot be shared.
-In particular, we developed this toolkit based on a modular design and open source frameworks, focused on the needs we identified for ourselves and the community. 
-
+In particular, we developed this toolkit based on a modular design and open source frameworks, focused on the needs we identified for ourselves and the community.
 
 # Four Avenues for Sharing Text Collections
 ## Make the entire dataset available
@@ -107,7 +113,7 @@ When researchers can access and build upon one another's data, it accelerates sc
 Useful text collections will also be referenced repeatedly, providing additional recognition for those who collected the data.
 All of this hopefully convinces research teams and funders that the additional efforts are well worth it.
 
-## Making pre-processed versions of texts available 
+## Making pre-processed versions of texts available
 
 Many researchers might be aware of the advantages that data sharing have for the research community and themselves, but refrain from it anyway, given obstacles and dangers involved with sharing them.
 However, the legal and ethical limitations to free access to information where they infringe on copyrights or on the privacy of data owners might not in all cases extend to their pre-processed versions.
@@ -186,7 +192,7 @@ In this way, researchers might assess the relevance of a data collection for the
 Beyond the simple functions most people know from Google Books though, the definition of *non-consumptive research* is broader and comprises all computational analysis in which a researcher does not display substantial portions of the original text or image [@hathitrust2023].
 Based on this, HathiTrust and others have experimented with "data capsules".
 HathiTrust describes a capsule as a "system that grants a user access to a virtual machine which is a dedicated, secure desktop environment [...] through which a user can carry out non-consumptive research", yet which does not give researchers the ability to display or download the data [@hathitrust2023].
-Given such a system, a wide range of unsupervised methods and destructive pre-processing steps become available to 
+Given such a system, a wide range of unsupervised methods and destructive pre-processing steps become available to
 
 # Sharing Corpora with AmCAT
 
@@ -245,19 +251,19 @@ In combination the three global (reader, writer and admin) and index roles (none
 #| label: tbl-roles
 #| tbl-cap: "Access roles in amcat4"
 library(kableExtra)
-rio::import("roles.csv") |> 
-  knitr::kable(format = "latex", 
-               booktabs = TRUE, 
+rio::import("roles.csv") |>
+  knitr::kable(format = "latex",
+               booktabs = TRUE,
                longtable = FALSE,
-               linesep = "") |> 
+               linesep = "") |>
   kable_styling(font_size = 9,
                 full_width = FALSE,
-                latex_options = c("repeat_header")) |> 
+                latex_options = c("repeat_header")) |>
   column_spec(1, width = "1.3cm") |>
   column_spec(2, width = "1.3cm") |>
   column_spec(3, width = "1.3cm") |>
-  column_spec(4, width = "13cm") |> 
-  kableExtra::footnote(symbol = "Relevant for non-consumptive research") |> 
+  column_spec(4, width = "13cm") |>
+  kableExtra::footnote(symbol = "Relevant for non-consumptive research") |>
   landscape()
 ```
 
@@ -286,20 +292,20 @@ The authentication settings will show the follwing explanation:
 auth: Do we require authorization?
   Possible choices:
   - no_auth: everyone (that can reach the server) can do anything they want
-  - allow_guests: everyone can use the server, dependent on index-level 
+  - allow_guests: everyone can use the server, dependent on index-level
       guest_role authorization settings
-  - allow_authenticated_guests: everyone can use the server, if they have 
-      a valid middlecat login, and dependent on index-level guest_role 
+  - allow_authenticated_guests: everyone can use the server, if they have
+      a valid middlecat login, and dependent on index-level guest_role
       authorization settings
   - authorized_users_only: only people with a valid middlecat login and
       an explicit server role can use the server
 
 The current value for auth is AuthOptions.no_auth.
-Enter a new value, press [enter] to leave unchanged, or press [control+c] 
+Enter a new value, press [enter] to leave unchanged, or press [control+c]
   to abort:
 ```
 
-The explanations of the different levels should hopefully be clear, except the term **middlecat login**. 
+The explanations of the different levels should hopefully be clear, except the term **middlecat login**.
 For authentication modes beyond allow_guests, people whom you want to grant some kind of access need to log in.
 To make this more secure, we wrote our own authentication provider called **middlecat**.
 It enables the administrator to set up authentication via different identity providers like Google or GitHub, with a fallback solution to let users log in via a one-time email link (if they want to log in again, they need to request a new link).
@@ -323,7 +329,7 @@ curl -O https://raw.githubusercontent.com/ccs-amsterdam/actioncat/main/
 docker-compose up --pull="missing" -d
 # create a test index to use in this example
 docker exec -it amcat4 amcat4 create-test-index
-# configure the instance to run in allow_guests (make sure to also set 
+# configure the instance to run in allow_guests (make sure to also set
   your email address as admin email, or you are locked out)
 docker exec -it amcat4 amcat4 config
 ```
@@ -407,18 +413,18 @@ docker-compose up --pull="missing" -d
 ![Example text preview including dfm](media/dfm.png){#fig-dfm}
 
 ```{#lst-amcat4r .r lst-cap="Querying the new field through the API"}
-if (!requireNamespace("amcat4r", quietly = TRUE))   
+if (!requireNamespace("amcat4r", quietly = TRUE))
   remotes::install_github("ccs-amsterdam/amcat4r")
 library(amcat4r)
 amcat_login("http://localhost/amcat")
-sotu_dfm <- query_documents(index = "state_of_the_union", 
+sotu_dfm <- query_documents(index = "state_of_the_union",
                             queries = NULL, fields = c(".id", "dfm"))
 sotu_dfm
 
 
     # A tibble: 232 × 2
-       .id      dfm           
-       <id_col> <list>        
+       .id      dfm
+       <id_col> <list>
      1 9d8…0d0  <list [3,370]>
      2 846…068  <list [2,176]>
      3 2b6…aa5  <list [2,895]>
@@ -438,14 +444,14 @@ services:
   action-dfm:
     image: ccsamsterdam/amcat-action-dfm:4.0.13
     build: .
-    network_mode: "host"    
+    network_mode: "host"
     environment: # behaviour of the R script is controlled through these variables
       - amcat4_host=http://localhost/amcat
       - index=state_of_the_union
       - queries=NULL
       - text_field=text
       - dfm_field=dfm
-    # for authentication, this container needs access to the httr2 cache directory. 
+    # for authentication, this container needs access to the httr2 cache directory.
     # You can find it with `rappdirs::user_cache_dir("httr2")`
     # volumes:
     #   - ~/.cache/httr2:/root/.cache/httr2 # [local path]:[container path]
