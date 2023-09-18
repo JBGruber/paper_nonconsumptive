@@ -1,5 +1,5 @@
 ---
-title: "Sharing *is* Caring (about Research): Four Avenues for Sharing Text Collections and the Need for Non-Consumptive Research"
+title: "Sharing *is* Caring (about Research): Three Avenues for Sharing (Copyrighted) Text Collections and the Need for Non-Consumptive Research"
 author:
   - name: "Johannes B. Gruber"
     affiliations:
@@ -35,8 +35,8 @@ code-line-numbers: false
 abstract: |
   A decade ago, the computational turn in communication science was heralded by promises of unseen treasure troves of available digital text containing communication of journalists and social media users.
   As these treasures become more closly guarded today, the field needs to think of new strategies to continue to enable researchers who want to engage in computational communication research.
-  One of these strategies is to make data sharing a more common practice in the field.
-  In this article, we outline four avenues to share as much as your data as possible, while still honouring ehtical and legal restictions.
+  One of these strategies is to make text data sharing a more common practice in the field.
+  In this article, we outline three avenues to share as much as your data as possible, while still honouring ehtical and legal restictions.
   Given the relative lack of infrastructure for some of these avenues, we also highlight the capacities of the Amsterdam Content Analysis Toolkit (AmCAT) to enable non standard sharing strategies.
   We especially highlight the functions for *non-consumptive research* -- which means analyses methods that can be performed without access to the full data set.
 ---
@@ -71,7 +71,7 @@ Especially as more platforms, outlets and individuals try to block their content
 and de facto everyone else.[^data]
 These problems have been recognised in the field and are discussed as important challenges at methodological and issue specific conferences[^comptext] as well as in specialized working groups like the EDMO Working Group on Access to Platform Data[^edmo]
 
-[^comptext]: Like the keynote roundtable at Comptext 2023 or the *The Post-API Conference* Annenberg Public Policy Center in 2023.
+[^comptext]: Like the keynote roundtable at Comptext 2023 or the *The Post-API Conference* at the Annenberg Public Policy Center in 2023.
 [^data]: <https://www.nytimes.com/2023/07/15/technology/artificial-intelligence-models-chat-data.html>
 [^edmo]: <https://web.archive.org/web/20230606203119/https://edmo.eu/2021/08/30/launch-of-the-edmo-working-group-on-access-to-platform-data/>
 
@@ -80,23 +80,24 @@ sharing already gathered corpora for secondary analysis.
 For data collected through, e.g., surveys, this strategy has been established for decades.
 For text corpora, there are often legal or ethical barriers to what can be shared:
 Most textual data is copyrighted, and moreover for some data (such as interpersonal communication)
-there are privacy and other ethical concerns.
+there are privacy and other ethical concerns [@AtteveldtPrivates2021].
 
-Specifically, we present four avenues to share data sets, structured by what is legally and morally justifiable in light of the interests of data owners.
+Specifically, we present three avenues to share data sets, structured by what is legally and morally justifiable in light of the interests of data owners.
 We put a particular focus on the possibility of making data available for *non-consumptive research*, in cases where other strategies appear impossible.
-Some of the options we discuss rely on infrastructure that currently does not exist, like severs to host tools for *non-consumptive research*.
-We thus additionally offer an open source software toolkit which allows universities, other institutions, or even individual researchers to enable almost anyone to share at least a portion of their collected data online, while respecting legal and ethical limitations to what can and cannot be shared.
+Some of the options we discuss rely on infrastructure that currently does not exist, like servers to host tools for *non-consumptive research*.
+We thus additionally offer an open source software toolkit which allows universities, other institutions, or even individual researchers to share at least a portion of their collected data online, while respecting legal and ethical limitations to what can and cannot be shared.
 In particular, we developed this toolkit based on a modular design and open source frameworks, focused on the needs we identified for ourselves and the community.
 
-# Four Avenues for Sharing Text Collections
-## Make the entire dataset available
+# The case for sharing textual data
 
-The first avenue is obvious:
-make data sets available for secondary research where possible.
+A core argument of this paper is that that textual (and other) data sets 
+should be made publicly available for secondary research where possible.
 This can enable others to quickly build on work after the original data set has been gathered.
 It saves researchers from duplicating work and enables them to focus their energy on answering important questions for society that might otherwise stay uncovered.
 What might be less obvious is why those who gathered the data in the first place might want to do that.
-We believe that there are at least three convincing arguments why one should consider the step:
+We believe that there are at least three convincing arguments why one should consider the step
+[see e.g. @Dienlin2021;@Klein2018;@Miguel2014;@Nosek2015 for similar arguments]:
+
 
 1.  **Lend your research credibility by making it reproducible:** One of the cornerstones of robust scientific research is reproducibility, that is that others than the original researcher can take the original data and methods to  reproduce the findings of a study [@barba2018terminologies]. When the original data is not available, reproducibility is impossible by default. By making data sets available, original researchers expose themselves to more rigor, which lends transparency and credibility to the original research, but also strengthens the foundation of scientific inquiry as a whole.
 
@@ -104,14 +105,23 @@ We believe that there are at least three convincing arguments why one should con
 
 3. **Promote the original research:** Sharing data also acts as a promotional tool. When other researchers access and use this data, they will almost always become aware of the original research and build on it. It then often makes sense for them not to build upon the original findings and further promote the findings through their own contribution.
 
+<!--
 On the downside, making a data set publicly available, however, will also often mean that researchers need to check with data owners if sharing data sets is allowed.
-Gathering data that is publicly available for academic research is usually considered except from copyright claims by fair use factors.
-However, sharing a collected corpus usually constitutes a pure duplication of copyright-protected, which is not covered by fair use [@HennesyLaw2019].
+Gathering data that is publicly available for academic research is usually considered exempt from copyright claims by fair use factors.
+However, sharing a collected corpus usually constitutes a pure duplication of copyright-protected material, which is not covered by fair use [@HennesyLaw2019].
 If data has been bought or has been obtained through an agreement with the data owner(s), they might also be opposed to redistribution or demand additional reimbursement, making it necessary to request additional funding.
 However, making data openly accessible promotes scientific collaboration, enables the reproducibility of results, and fosters the advancement of knowledge.
+-->
 When researchers can access and build upon one another's data, it accelerates scientific progress and helps to avoid duplicative efforts.
 Useful text collections will also be referenced repeatedly, providing additional recognition for those who collected the data.
 All of this hopefully convinces research teams and funders that the additional efforts are well worth it.
+
+# Three Avenues for Sharing Text Collections without Sharing the Texts
+
+As argued above, it is often desirable and even beneficial to share parts of textual data sets,
+even if the data set is proprietary, copyrighted, or sensitive. 
+In this section, we describe three strategies for allowing other researchers access to textual data
+in situations where the texts cannot be shared publicly.
 
 ## Making pre-processed versions of texts available
 
@@ -281,12 +291,11 @@ This way, it is possible, for example, to have one index where everyone can see 
 Users' global and index role and the guest roles of indexes can be controlled via the dashboard or the API.
 We show this illustrativly in the example below.
 
-However, first we need to highlitght another setting that can modify access to data in `amcat4`: the authentification mode.
-The authentification mode of an `amcat4` instance controls who has access to the data in the first place.
+However, first we need to highlitght another setting that can modify access to data in `amcat4`: the authentication mode.
+The authentication mode of an `amcat4` instance controls who has access to the data in the first place.
 Unlike the roles, this setting can only be accessed by administrators through the command line on the machine where the instance is hosted.
 If you follow our recommended way of installation (see the [online manual](https://amcat.nl/book/02._getting-started.html#setup-through-docker)), `amcat4` will run in a Docker container.
-When invoked with the command `docker exec -it amcat4 amcat4 config`, an interactive configuration menu will guide the user through various settings.
-The authentication settings will show the follwing explanation:
+When invoked with the command `docker exec -it amcat4 amcat4 config`, an interactive configuration menu will guide the user through various settings as shown in @lst-auth.
 
 ```{#lst-auth .bash lst-cap="Authentication modes in amcat4"}
 auth: Do we require authorization?
@@ -319,7 +328,7 @@ The indexes can then be configured to let users have a metareader role explicitl
 ## Non-Consumptive Research via the AmCAT Dashboard: an Example
 
 As Illustration of the access control, we can use an instance where the authentication mode is set to *allow_guests* and where we added a test index.
-To reproduce this setup, one could spin up an instance of the AmCAT suite using [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) (you can find a more detailed explanations in the [AmCAT manual](https://amcat.nl/book/02._getting-started.html)):
+To reproduce this setup, one could spin up an instance of the AmCAT suite using [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) as shown in @lst-setup (you can find a more detailed explanations in the [AmCAT manual](https://amcat.nl/book/02._getting-started.html))
 
 ```{#lst-setup .bash lst-cap="Creating an AmCAT instance through Docker"}
 # download our docker compose file with curl or manually
@@ -410,7 +419,26 @@ curl -O https://raw.githubusercontent.com/ccs-amsterdam/actioncat/main/
 docker-compose up --pull="missing" -d
 ```
 
-![Example text preview including dfm](media/dfm.png){#fig-dfm}
+### Non-Consumptive Research via `actioncat`: creating and analysing annotations
+
+This is just one of the possibilities with `actioncat` for non-consumptive research.
+You can also run custom analysis scripts that use the textual content to annotate a document,
+for example with topic classification, sentiment analysis, or geotagging.
+These annotations can then be viewed and queried using AmCAT, 
+even without access to the texts that were used to create the annotations.
+As an example, @fig-dfm shows a 'metareader' view of a document that has 
+been preprocessed with location and topic information. 
+The logged in user has no access to the underlying text,
+but can still view and query the generated annotations. 
+
+::: {#fig-nonconsumptive layout-ncol=1}
+
+![Example metareader view of processed document](media/nonconsumptive.png){#fig-dfm}
+
+![The metareader can still query the text and analyse annotations](media/barplot.png){#fig-barplot}
+
+Comparison: An unauthorized user can see and analyse the annotations, even without access to the underlying text
+:::
 
 ```{#lst-amcat4r .r lst-cap="Querying the new field through the API"}
 if (!requireNamespace("amcat4r", quietly = TRUE))
@@ -463,11 +491,11 @@ services:
 As the gold mines of digital freely available text data are being more closely gated by the companies who own them, the field needs to rethink the value of data sets.
 When social media data was cheaply available, it might not have mattered much that corpora collected digital dust on the hard drives of most researchers after their research on it was published.
 Today, however, these corpora are more valuable than ever, as they can fuel the research efforts of scientists who have lost access due to limited funding and a lack of industry connections.
-In this contribution, we presented four avenues to sharing a corpus for secondary analysis.
-Even when it is not possible for legal or ethical reasons to share the full text of a corpus (Avenue 1), we showed that there are various useful parts that can neverthless be shared:
-versions of the text that have undergone destructive pre-processing, meaning that full texts cannot be reconstructed and hence can't be consumed (Avenue 2)
-metadata, including identifiers of the documents, so other researchers can rebuild the same pre-filtered corpus about a topic (Avenue 3);
-or making the data set accessible for *non-consumptive research*, meaning texts can't be consumed (read) by still analyzed via computational methods.
+In this contribution, we presented three avenues to sharing a corpus for secondary analysis
+even when it is not possible for legal or ethical reasons to share the full text of a corpus:
+versions of the text that have undergone destructive pre-processing, meaning that full texts cannot be reconstructed and hence can't be consumed (Avenue 1)
+metadata, including identifiers of the documents, so other researchers can rebuild the same pre-filtered corpus about a topic (Avenue 2);
+or making the data set accessible for *non-consumptive research*, meaning texts can't be consumed (read) by still analyzed via computational methods (Avenue 3).
 
 We additionally discussed the fourth iteration of the Amsterdam Content Analysis Toolkit (AmCAT), which can be used to realize all of the discussed avenues.
 This means that researchers are not hindered by a lack of technical options to work around data sharing limitations.
