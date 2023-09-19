@@ -22,8 +22,8 @@ format:
           \AddToHook{env/Highlighting/begin}{\scriptsize}
 pdf-engine: pdflatex
 keywords: Non-Consumptive Research, computational methods
-volume: 1
-pubnumber: 1
+volume: "?"
+pubnumber: "?"
 pubyear: 2023
 firstpage: 1
 shortauthors: One & Two
