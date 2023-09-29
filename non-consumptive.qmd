@@ -34,7 +34,7 @@ execute:
 code-line-numbers: false
 abstract: |
   A decade ago, the computational turn in communication science was heralded by promises of unseen treasure troves of available digital text containing communication of journalists and social media users.
-  As these treasures become more closly guarded today, the field needs to think of new strategies to continue to enable researchers who want to engage in computational communication research.
+  As these treasures become more closely guarded today, the field needs to think of new strategies to continue to enable researchers who want to engage in computational communication research.
   One of these strategies is to make text data sharing a more common practice in the field.
   In this article, we outline three avenues to share as much as your data as possible, while still honouring ehtical and legal restictions.
   Given the relative lack of infrastructure for some of these avenues, we also highlight the capacities of the Amsterdam Content Analysis Toolkit (AmCAT) to enable non standard sharing strategies.
@@ -52,7 +52,7 @@ Just this year, Twitter, which was renamed to $\mathbb{X}$ recently, eliminated 
 Meanwhile Meta's tool to gather data from Facebook and Instagram, Crowdtangle, has been publicly rumored to be closing down for several years[^meta], making it difficult to plan, or request funding for, any projects relying on this data.
 Likewise, digital news archives, like LexisNexis, increasingly guard their sites against large scale data collection or make it out of reach expensive.
 Meanwhile, newly developed or strengthened privacy and ethical standards and laws -- while both important and welcome -- further limit access to data for analysis.
-The Post-API Age, as predicted by  @freelonPostAPI2018, seems to have reached a new stage and the promised gold mines of digital communication traces are no longer accessible.
+The Post-API Age, as predicted by @freelonPostAPI2018, seems to have reached a new stage and the promised gold mines of digital communication traces are no longer accessible.
 
 [^twitter]: <https://web.archive.org/web/20230831000123/https://www.theverge.com/2023/3/30/23662832/twitter-api-tiers-free-bot-novelty-accounts-basic-enterprice-monthly-price>
 [^reddit]: <https://web.archive.org/web/20230829045754/https://www.reddit.com/r/modnews/comments/134tjpe/reddit_data_api_update_changes_to_pushshift_access/>
@@ -66,10 +66,10 @@ While computational methods have decreased the funding needs for analysis,
 limited availability of data leads to new divides in the field between those who can afford to negotiate access,
 or have industry ties that enable them to collaborate with social media companies, and those who cannot --
 also limiting who can reproduce or check such research.
-Likewise, web scraping content, as @freelonPostAPI2018 suggests, requires know-how and resources not available to all researchers.
-Especially as more platforms, outlets and individuals try to block their content from being scraped by AI companies --
-and de facto everyone else.[^data]
-These problems have been recognised in the field and are discussed as important challenges at methodological and issue specific conferences[^comptext] as well as in specialized working groups like the EDMO Working Group on Access to Platform Data[^edmo]
+Likewise, web scraping content, as @freelonPostAPI2018 suggests, requires know-how and resources.
+As more platforms, outlets and individuals try to block their content from being scraped by AI companies --
+and de facto everyone else[^data] -- the investment in know-how and resources might soon surge and put it out of reach for many.
+These problems have been recognized in the field and are discussed as important challenges at methodological and issue specific conferences[^comptext] as well as in specialized working groups like the EDMO Working Group on Access to Platform Data[^edmo].
 
 [^comptext]: Like the keynote roundtable at Comptext 2023 or the *The Post-API Conference* at the Annenberg Public Policy Center in 2023.
 [^data]: <https://www.nytimes.com/2023/07/15/technology/artificial-intelligence-models-chat-data.html>
@@ -79,11 +79,13 @@ In this contribution, we thus want to highlight a mitigation strategy that grows
 sharing already gathered corpora for secondary analysis.
 For data collected through, e.g., surveys, this strategy has been established for decades.
 For text corpora, there are often legal or ethical barriers to what can be shared:
-Most textual data is copyrighted, and moreover for some data (such as interpersonal communication)
-there are privacy and other ethical concerns [@AtteveldtPrivates2021].
+A large portion of textual data, especially media content, is copyrighted, and moreover for some data (such as interpersonal communication) there are privacy and other ethical concerns [@AtteveldtPrivates2021].
 
-Specifically, we present three avenues to share data sets, structured by what is legally and morally justifiable in light of the interests of data owners.
-We put a particular focus on the possibility of making data available for *non-consumptive research*, in cases where other strategies appear impossible.
+Specifically, we present three avenues to share data sets, structured by what is legally and morally justifiable in light of the interests of data owners:
+making pre-processed versions of the corpus available;
+making metadata of a corpus available;
+making *non-consumptive* research capabilities available -- that is enabling analyses of a corpus without sharing the text data for consumption (i.e., reading).
+We put a particular focus on the last avenue of enabling analyses through *non-consumptive research*, in cases where other strategies appear impossible.
 Some of the options we discuss rely on infrastructure that currently does not exist, like servers to host tools for *non-consumptive research*.
 We thus additionally offer an open source software toolkit which allows universities, other institutions, or even individual researchers to share at least a portion of their collected data online, while respecting legal and ethical limitations to what can and cannot be shared.
 In particular, we developed this toolkit based on a modular design and open source frameworks, focused on the needs we identified for ourselves and the community.
@@ -99,9 +101,9 @@ We believe that there are at least three convincing arguments why one should con
 [see e.g. @Dienlin2021;@Klein2018;@Miguel2014;@Nosek2015 for similar arguments]:
 
 
-1.  **Lend your research credibility by making it reproducible:** One of the cornerstones of robust scientific research is reproducibility, that is that others than the original researcher can take the original data and methods to  reproduce the findings of a study [@barba2018terminologies]. When the original data is not available, reproducibility is impossible by default. By making data sets available, original researchers expose themselves to more rigor, which lends transparency and credibility to the original research, but also strengthens the foundation of scientific inquiry as a whole.
+1.  **Lend your research credibility by making it reproducible:** One of the cornerstones of robust scientific research is reproducibility, that is that others than the original researcher can take the original data and methods to reproduce the findings of a study [@barba2018terminologies]. When the original data is not available, reproducibility is impossible by default. By making data sets available, original researchers expose themselves to more rigor, which lends transparency and credibility to the original research, but also strengthens the foundation of scientific inquiry as a whole.
 
-2. **Gather citations (beyond the own field):** data sets that are available and are used for secondary analysis are usually also cited in new studies. Given the importance for citation counts in most academic systems worldwide, this is a big incentive for those who spent the resources to gather the original data. What researchers should also keep in mind here is that the impact of the data set might well end up surpassing that of the original research, given that data collections might attract researchers from other disciplines than their own. As computer and data scientists become more interested in social science questions, gathered and annotated data has become a valuable resource in these fields, for example.
+2. **Gather citations (beyond the field of the researcher):** data sets that are available and are used for secondary analysis are usually also cited in new studies. Given the importance for citation counts in most academic systems worldwide, this is a big incentive for those who spent the resources to gather the original data. What researchers should also keep in mind here is that the impact of the data set might well end up surpassing that of the original research, given that data collections might attract researchers from other disciplines than their own. As computer and data scientists become more interested in social science questions, gathered and annotated data has become a valuable resource in these fields, for example.
 
 3. **Promote the original research:** Sharing data also acts as a promotional tool. When other researchers access and use this data, they will almost always become aware of the original research and build on it. It then often makes sense for them not to build upon the original findings and further promote the findings through their own contribution.
 
@@ -114,7 +116,10 @@ However, making data openly accessible promotes scientific collaboration, enable
 -->
 When researchers can access and build upon one another's data, it accelerates scientific progress and helps to avoid duplicative efforts.
 Useful text collections will also be referenced repeatedly, providing additional recognition for those who collected the data.
-All of this hopefully convinces research teams and funders that the additional efforts are well worth it.
+<!-- All of this hopefully convinces research teams and funders that the additional efforts are well worth it. -->
+Of course, even with those incentives and with good support, there is considerable effort in preparing material for publication, which is not always sufficiently rewarded under the current academic norms, at least not on the short term.
+For this reason, we echo the call on journals that don't do so yet to require materials to be published to the extent possible, even for sensitive or copyrighted materials;
+and on hiring and evaluation committees to appreciate the effort and worth of data contributions [@AtteveldtRoadmap2019].
 
 # Three Avenues for Sharing Text Collections without Sharing the Texts
 
@@ -137,12 +142,15 @@ This could involve turning text into a document-feature-matrix -- that is a tabl
 In these cases bag-of-word approaches can still be employed to analyze the data, but the original texts can usually not be recreated^[
 If original texts are very short, it might still be possible to some degree.
 ].
-For most limitations regarding copyright laws, making data available in such a format constitutes fair use "the effect of the use upon the potential market for or value of the copyrighted work" [@HennesyLaw2019] is essentially non-existent.
-Essentially, someone who wanted to read an article or book would gain little from staring at a document-feature-matrix, leaving the data owner's chances to make money from selling the work untouched.
+For most limitations regarding copyright laws, making data available in such a format constitutes fair use, as "the effect of the use upon the potential market for or value of the copyrighted work" [@HennesyLaw2019] is essentially non-existent.[^1]
+Essentially, someone who wanted to read (i.e., consume) an article or book would gain little from staring at a document-feature-matrix, leaving the data owner's chances to make money from selling the work untouched.
 In fact, the platform [Media Cloud](www.mediacloud.org) has practiced this avenue for a while to share web-scraped content from hundreds of online news sites without known issues.
-In cases where it is crucial to protect someone's privacy this might not be enough, however.
-Additional steps could be applied to create a privatized version of the data, for example, by replacing each feature description of a document-feature-matrix with a synonym.
+Replicability of analysis suffers only for computational approaches where the word order is important -- which is a little unfortunate given that the field currently departs from the bag-of-words paradigm.
+In cases where it is crucial to protect someone's privacy, destroying the word order might still not be enough, however.
+Additional steps could be applied to create a privatized version of the data, for example, by replacing each feature description of a document-feature-matrix with a synonym or an entirely random symbol.
 This decreases the usefulness of the data somewhat, but it can still be used to reproduce findings or improve upon original models.
+
+[^1]: Whether this commonly accepted legal argument fully satisfies data holders is a different question, which one should keep in mind.
 
 A second destructive pre-processing step that has gained popularity in recent years is to encode texts into embeddings.
 Word or text embeddings produced through models like BERT [@devlinBERT2019] are a common transformation process in computational text analysis now and are usually employed before a classification model is trained [e.g., @theocharis:2020:DPI; @rodriguezEmbedding2023; @laurerBERT-NLI2023; @SimonTelegramsphere2022].
@@ -162,7 +170,7 @@ Skipping this step in secondary analysis of data means that it can proceed more 
 
 In other cases, obtaining a selection of relevant texts might be impossible.
 As many platforms and outlets do not offer a way to query the content or demand additional compensation, using keywords to select relevant portions of a database might be impossible.
-However, gathering all content to filter afterwards is often infeasible as well as it might conflict with rate limits and/or require enormous resources for download and storage.
+However, gathering all content to filter afterward is often infeasible as well as it might conflict with rate limits and/or require enormous resources for download and storage.
 In sum, this can make a curated list of items the most valuable part of a shared dataset.
 
 So while obtaining the full text still involves some extra efforts and challenges, if metadata of the original data is available, this enables researchers to reproduce (often in a limited fashion as not all items might still be available) and extend the original analysis.
@@ -170,15 +178,15 @@ In the case of Twitter data collections, the practice of sharing status IDs had 
 http://dfreelon.org/2012/02/11/arab-spring-twitter-data-now-available-sort-of/
 ] A practice that has unfortunately also become punishingly expensive under the new API rules.
 A more encouraging example is again the platform [Media Cloud](www.mediacloud.org) from which researchers can obtain curated lists of URLs to news stories about specific topics.
-Using tools such as news-please^[
+Using tools such as `news-please`^[
 https://github.com/fhamborg/news-please
-] or paperboy^[
+] or `paperboy`^[
 https://github.com/JBGruber/paperboy
 ], one can then quickly extract the full text, if the websites are still available.
 
 ## Make Non-consumptive Research Capabilities Available
 
-A final avenue for making datasets available for secondary analysis is that of *non-consumptive research*.
+A final avenue for making datasets available for secondary analysis that of *non-consumptive research*.
 Non-consumptive research means that a researcher analyzes texts without consuming, that is reading, them.
 The term was popularized by two court cases which also exemplify its meaning:
 that of Authors Guild v. HathiTrust, 755 F.3d 87 (2d Cir. 2014) and Authors Guild v. Google 721 F.3d 132 (2nd Cir. 2015).
@@ -211,12 +219,12 @@ The core of the project has always been a database of documents, combined with g
 In the current fourth iteration of the toolkit, a particular focus was put on sharing data with an audience as broad as possible, but as narrow as legal and ethical circumstances allow.
 It comes at the right time for researchers who want to take one of the avenues described above to share their corpora, but so far miss the infrastructure for it.
 
-Besides providing a new dashboard and API wrappers for `R` and `Python` -- which make them great for working with collected corpora, or selecting a relevant subset -- one of the biggest improvements of AmCAT 4.0 is that it enables and facilitates the access and processing of data that cannot be shared openly by keeping data owners in direct control of the data, and by employing trusted connections and role-based access control methods.
+Besides providing a new dashboard and API wrappers for `R` and `Python` -- which make them great for working with collected corpora, or selecting a relevant subset -- one of the biggest improvements of the current 4.0+ versions of AmCAT is that it enables and facilitates the access and processing of data that cannot be shared openly by keeping data owners in direct control of the data, and by employing trusted connections and role-based access control methods.
 Below, we describe some of the functions of the flexible framework access control and guest access and the (pre-processing) actions which extend AmCAT to be a toolkit for *non-consumptive research*.
 Besides querying a database to get counts and trends of about the appearance of certain features, we developed a new framework, which we called `actioncat`, that can be used, for example, for pre-processing actions that allow users without access to the original data to decide which pre-processed versions of texts is then made available.
 The toolkit can be used for free and deployed by most users with a basic to advanced technical background.
 Because of the modular design, shown in @fig-digram, deployments of AmCAT can be integrated in many existing infrastructures.
-In the future, we hope to encourage universities and other organisations to make deployed versions available for usage by the research community.
+In the future, we hope to encourage universities and other organizations to make deployed versions available for usage by the research community.
 
 ![Design diagram of the Amsterdam Content Analysis Toolkit (AmCAT)](media/amcat-flow.drawio.png){#fig-digram}
 
@@ -228,7 +236,7 @@ Using this route is popular among researcher, with one reason likely being that 
 
 One downside that we identified specifically for text and even more so for image and video data is that data sets can only be downloaded in full or in the parts the data set creators have pre-determined, for example, one file per country or period.
 For survey data, for example, this is not an issue as files are usually small and using a subset of the data is often less relevant.
-For corpora with typical sizes of tens or hundreds of thousands of documents, the files can take substantial amounts of time to be downloaded from a repository (depending on the speed of the connection and the bandwith of the repository host).
+For corpora with typical sizes of tens or hundreds of thousands of documents, the files can take substantial amounts of time to be downloaded from a repository (depending on the speed of the connection and the bandwidth of the repository host).
 
 In AmCAT, we provide graphical user interface and API packages in `R` or `Python` to enable users to query the database using the powerful query string syntax developed by Elasticsearch^[
 http://web.archive.org/web/20230908093502/https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
@@ -285,13 +293,13 @@ in case of data that has undergone destructive pre-processing steps, the query f
 The simple counts, frequency plots and query functionality therefore fill an important need for researchers who want to use a dataset, as they allow for initial non-consumptive research on a corpus.
 The functions available through the dashboard are additionally mirrored in the API.
 
-Additionally to these twelve roles, we can control the default role users have on a given index (see level 0 in the table).
+Additionally, to these twelve roles, we can control the default role users have on a given index (see level 0 in the table).
 We call this the guest role of an index.
 This way, it is possible, for example, to have one index where everyone can see the metadata while other indexes on the AmCAT instance are hidden.
 Users' global and index role and the guest roles of indexes can be controlled via the dashboard or the API.
-We show this illustrativly in the example below.
+We show this illustratively in the example below.
 
-However, first we need to highlitght another setting that can modify access to data in `amcat4`: the authentication mode.
+However, first we need to highlight another setting that can modify access to data in `amcat4`: the authentication mode.
 The authentication mode of an `amcat4` instance controls who has access to the data in the first place.
 Unlike the roles, this setting can only be accessed by administrators through the command line on the machine where the instance is hosted.
 If you follow our recommended way of installation (see the [online manual](https://amcat.nl/book/02._getting-started.html#setup-through-docker)), `amcat4` will run in a Docker container.
@@ -318,17 +326,17 @@ The explanations of the different levels should hopefully be clear, except the t
 For authentication modes beyond allow_guests, people whom you want to grant some kind of access need to log in.
 To make this more secure, we wrote our own authentication provider called **middlecat**.
 It enables the administrator to set up authentication via different identity providers like Google or GitHub, with a fallback solution to let users log in via a one-time email link (if they want to log in again, they need to request a new link).
-We host a middlecat instace at <https://middlecat.up.railway.app>, but as the software is open source, everyone can set up their own instance and negotiate with different identity providers to make other authentication options available (e.g., through their university or company).
+We host a middlecat instance at <https://middlecat.up.railway.app>, but as the software is open source, everyone can set up their own instance and negotiate with different identity providers to make other authentication options available (e.g., through their university or company).
 
 ![Middlecat login screen](media/amcat-2-middlecat.png){#fig-middlecat}
 
-In cases where non-consuptive research should be made possible, all modes except *no_auth* can be used.
+In cases where non-consumptive research should be made possible, all modes except *no_auth* can be used.
 The indexes can then be configured to let users have a metareader role explicitly or via the guest role of an index, as explained above.
 
 ## Non-Consumptive Research via the AmCAT Dashboard: an Example
 
 As Illustration of the access control, we can use an instance where the authentication mode is set to *allow_guests* and where we added a test index.
-To reproduce this setup, one could spin up an instance of the AmCAT suite using [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) as shown in @lst-setup (you can find a more detailed explanations in the [AmCAT manual](https://amcat.nl/book/02._getting-started.html))
+To reproduce this setup, one could spin up an instance of the AmCAT suite using [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) as shown in @lst-setup (you can find a more detailed explanation in the [AmCAT manual](https://amcat.nl/book/02._getting-started.html))
 
 ```{#lst-setup .bash lst-cap="Creating an AmCAT instance through Docker"}
 # download our docker compose file with curl or manually
@@ -355,7 +363,7 @@ They can also switch from *Summary* to *Graph/Table* tab to compare document gro
 In @fig-analysis2 we show a frequency comparison of documents fitting the search "america and europa", which retrieves documents containing both terms.
 Party is a meta information of the texts, but can be used to group documents.
 For these simple frequency analyses and text query functions there is no difference for users with and without access to the text data.
-Only when a users attempts to access the full text -- beyond the short snippet shown in the summary -- is there a difference.
+Only when a user attempts to access the full text -- beyond the short snippet shown in the summary -- is there a difference.
 @fig-reader and @fig-guest show the comparison between the view of a *reader* and *metareader* respectively.
 
 ::: {#fig-analyses layout-ncol=2}
@@ -377,7 +385,7 @@ Comparison: *reader* and *metareader* text preview
 :::
 
 In sum, users with no specific rights can still explore the corpus to a large degree.
-Through the fine-grained access control and the dashboard, AmCAT offers ways to query, visualize and analyse text data without giving users access to the underlying data.
+Through the fine-grained access control and the dashboard, AmCAT offers ways to query, visualize and analyze text data without giving users access to the underlying data.
 If they then decide that the data would be relevant for their research, they can try to obtain usage right from the data owners somehow.
 The administrator of the AmCAT instance can then grant them a *reader* role or above, so they could access the full text.
 Alternatively, they could use the meta information of the data set or a filtered subset of it, to 'rehydrate' the corpus from its original source.
@@ -387,7 +395,7 @@ On the other side of things, AmCAT allows researchers to make data sets availabl
 
 While `amcat4` offers rudimentary analysis methods for users with *metareader* access like counting and cross-tabulating documents using queries, we also developed and addon framework to AmCAT that makes it possible to run entire analysis workflows in a non-consuptive way.
 We call this framework `actioncat`
-The basic idea we implemented is to leverage the open source Docker infrastrucre, which we also employ to make the AmCAT suite of packages available, to let users create specialised workflows in order to perform analyses on data they do not have access to.
+The basic idea we implemented is to leverage the open source Docker infrastructure, which we also employ to make the AmCAT suite of packages available, to let users create specialized workflows in order to perform analyses on data they do not have access to.
 
 We offer two example *actions* (which is what we call predefined workflows that are packaged in a Docker image/container), one in `R`, one in `Python`:
 
@@ -396,14 +404,14 @@ We offer two example *actions* (which is what we call predefined workflows that 
 
 Both of these actions are destructive preprocessing workflows in the sense that the original text cannot be reconstructed from the new field.
 This makes these actions well suited for indexes where the full text can not be shared because of copyright, privacy or other concerns.
-Using AmCAT's fine grained access control features, the full text can be hidden from users without specific permissions, but the preprocessed data can still be shared with a wider audience.
+Using AmCAT's finegrained access control features, the full text can be hidden from users without specific permissions, but the preprocessed data can still be shared with a wider audience.
 Users can imitate these examples to create their own workflows and send them to administrators of an `amcat4` instance.
 After approval, the administrator can then run a workflow using just two commands: one to download and one to run the action.
-Compared to sending just `R` or `Python` files for processing, this approach has the advantage that the action will have all the right dependencies already and perform the action exactly as on the user's machine (therby standardizing the process to a certain degree and making the admins life a little easier).
+Compared to sending just `R` or `Python` files for processing, this approach has the advantage that the action will have all the right dependencies already and perform the action exactly as on the user's machine (thereby standardizing the process to a certain degree and making the admins life a little easier).
 
 ### Non-Consumptive Research via `actioncat`: an Example
 
-To illustrate the basic steps from the administrators perspective, we use one of the example workflows in the repository here: <https://github.com/ccs-amsterdam/actioncat>.
+To illustrate the basic steps from the administrator's perspective, we use one of the example workflows in the repository here: <https://github.com/ccs-amsterdam/actioncat>.
 First, we spin up an instance of the AmCAT suite using [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) as in @lst-setup.
 Administrators can then use actions with the same basic approach as shown in @lst-dfm.
 In case of a user defined action, the only difference for the administrator will be the link to the Docker Compose file -- which could also be sent via email, for example.
@@ -419,7 +427,7 @@ curl -O https://raw.githubusercontent.com/ccs-amsterdam/actioncat/main/
 docker-compose up --pull="missing" -d
 ```
 
-### Non-Consumptive Research via `actioncat`: creating and analysing annotations
+### Non-Consumptive Research via `actioncat`: creating and analyzing annotations
 
 This is just one of the possibilities with `actioncat` for non-consumptive research.
 You can also run custom analysis scripts that use the textual content to annotate a document,
@@ -428,7 +436,7 @@ These annotations can then be viewed and queried using AmCAT,
 even without access to the texts that were used to create the annotations.
 As an example, @fig-dfm shows a 'metareader' view of a document that has 
 been preprocessed with location and topic information. 
-The logged in user has no access to the underlying text,
+The logged-in user has no access to the underlying text,
 but can still view and query the generated annotations. 
 
 ::: {#fig-nonconsumptive layout-ncol=1}
@@ -507,7 +515,7 @@ Given approval by an administrator who has to check that a workflow does not ret
 They can then access a document-feature-matrix, embedding or whatever other version of the text they might want.
 This does not allow quite the interactive exploration that, e.g., HathiTrust's "data capsules" do, as workflows need to be pre-approved, but the framework is a lot more flexible in that any workflow can be packaged and sent to the admin of an AmCAT instance for quick and seamless review and authorization.
 
-In sum, a crucial criterion for  data storing infrastructure going forward should be scientific transparency to facilitate replication, collaboration, and efficient re-use of academic contributions in terms of data collection and tool creation.
+In sum, a crucial criterion for data storing infrastructure going forward should be scientific transparency to facilitate replication, collaboration, and efficient re-use of academic contributions in terms of data collection and tool creation.
 The features in the AmCAT enable researchers to make data available in ways that conform with copyright, privacy, or other concerns.
 Following the ideas developed within the concept of *non-consumptive research*, we can enable new analyses or replication effectively without sharing access to the full material.
 
